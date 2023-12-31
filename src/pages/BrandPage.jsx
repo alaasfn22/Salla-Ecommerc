@@ -1,9 +1,16 @@
-import CustomePagination from "../utils/Pagination";
+import { useState } from "react";
 import BrandCard from "../components/brand/BrandCard";
 import LoadingSpinner from "../helper/Spinner";
 import GetBrnadHooks from "../Hooks/GetBrnadHooks";
+import { Pagination } from "flowbite-react";
+
 const BrandPage = () => {
   const [brands, pageCount, handelOnSelectPage, isLoading] = GetBrnadHooks();
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    handelOnSelectPage(page);
+  };
   if(isLoading){
     return <LoadingSpinner/>
   }
@@ -25,10 +32,18 @@ const BrandPage = () => {
           )}
         </div>
     
-      <CustomePagination
-        handelOnSelectPage={handelOnSelectPage}
-        pageCount={pageCount}
-      />
+        <div className="flex justify-center items-center py-8">
+      <div className="flex overflow-x-auto sm:justify-center">
+        <Pagination
+        
+          currentPage={currentPage}
+          totalPages={pageCount}
+          onPageChange={onPageChange}
+          showIcons
+          
+        />
+      </div>
+    </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ const GetBrnadHooks = () => {
   const { brands, isLoading } = useSelector((state) => state.brand);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBrnads(8));
+    dispatch(getBrnads());
   }, []);
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {

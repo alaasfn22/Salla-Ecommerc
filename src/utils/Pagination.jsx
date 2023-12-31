@@ -15,10 +15,12 @@ function CustomePagination({ handelOnSelectPage, pageCount }) {
     <div className="flex justify-center items-center py-8">
       <div className="flex overflow-x-auto sm:justify-center">
         <Pagination
+        
           currentPage={currentPage}
           totalPages={pageCount}
           onPageChange={onPageChange}
           showIcons
+          
         />
       </div>
     </div>

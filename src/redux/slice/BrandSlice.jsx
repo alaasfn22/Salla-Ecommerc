@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { useGetData } from "../../Hook/useGetData";
 export const getBrnads = createAsyncThunk(
   "brands/getBrands",
-  async (limit, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await useGetData(`/api/v1/brands?limit=${limit}`);
+      const res = await useGetData(`/api/v1/brands?limit=8`);
       return res;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

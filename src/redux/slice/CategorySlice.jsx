@@ -3,9 +3,9 @@ import { useGetData } from "../../Hook/useGetData";
 
 export const getCategories = createAsyncThunk(
   "category/getcategories",
-  async (limit, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await useGetData(`/api/v1/categories?limit=${limit}`);
+      const res = await useGetData(`/api/v1/categories?limit=8`);
       return res;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

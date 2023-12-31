@@ -9,8 +9,14 @@ const GetCategoryHooks = () => {
   const dispatch = useDispatch();
   const { category, isLoading } = useSelector((state) => state.category);
   useEffect(() => {
-    dispatch(getCategories(8));
+    dispatch(getCategories());
   }, []);
+  const [allcategory,setAllCategory]=useState([])
+  useEffect(() => {
+    if (category.data) {
+      setAllCategory(category.data);
+    }
+  }, [category.data]);
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     try {
@@ -25,7 +31,7 @@ const GetCategoryHooks = () => {
   const handelOnSelectPage = (page) => {
     dispatch(getCategoryPagination(page));
   };
-  return [category, pageCount, handelOnSelectPage, isLoading];
+  return [allcategory, pageCount, handelOnSelectPage, isLoading];
 };
 
 export default GetCategoryHooks;
