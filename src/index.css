@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.swiper-pagination{
+    margin: 10px auto;
+    position: relative !important;
+  }

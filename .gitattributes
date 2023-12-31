@@ -1,0 +1,1 @@
+*.{css,js,json,jsx,html,md,config.js} filter=lfs diff=lfs merge=lfs -text

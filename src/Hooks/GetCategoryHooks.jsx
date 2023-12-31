@@ -1,0 +1,31 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getCategories,
+  getCategoryPagination,
+} from "../redux/slice/CategorySlice";
+
+const GetCategoryHooks = () => {
+  const dispatch = useDispatch();
+  const { category, isLoading } = useSelector((state) => state.category);
+  useEffect(() => {
+    dispatch(getCategories(8));
+  }, []);
+  const [pageCount, setPageCount] = useState(0);
+  useEffect(() => {
+    try {
+      if (category.paginationResult) {
+        setPageCount(category.paginationResult.numberOfPages);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, [category]);
+
+  const handelOnSelectPage = (page) => {
+    dispatch(getCategoryPagination(page));
+  };
+  return [category, pageCount, handelOnSelectPage, isLoading];
+};
+
+export default GetCategoryHooks;
