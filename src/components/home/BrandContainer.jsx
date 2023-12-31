@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay ,  Keyboard, Pagination,Navigation} from "swiper/modules";
+import { Autoplay, Keyboard, Pagination, Navigation } from "swiper/modules";
 import LoadingSpinner from "../../helper/Spinner";
 import BrandCard from "../brand/BrandCard";
 import CustomeButton from "../../utils/CustomeButton";
@@ -12,25 +12,18 @@ const BrandContainer = ({ brands, brandLoading }) => {
   return (
     <>
       <CustomeButton name="Brand" pathname="/brand" title="All Brands" />
-      <div className="p-4 rounded-xl bg-main-Color">
+      <div className="p-4  rounded-xl  bg-white">
         <Swiper
-          // slidesPerView={1}
-          // spaceBetween={20}
-          // autoplay={{
-          //   delay: 3000,
-          //   disableOnInteraction: true,
-          // }}
-          // modules={[Autoplay]}
           slidesPerView={1}
-      spaceBetween={30}
-      keyboard={{
-        enabled: true,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      navigation={true}
-      modules={[Keyboard, Pagination, Navigation]}
+          spaceBetween={30}
+          keyboard={{
+            enabled: true,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Keyboard, Pagination, Navigation]}
           breakpoints={{
             400: {
               slidesPerView: 2,

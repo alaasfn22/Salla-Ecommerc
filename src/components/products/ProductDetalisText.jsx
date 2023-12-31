@@ -47,11 +47,10 @@ const ProductDetalisText = ({ product, brand, category }) => {
                 <span
                   key={color}
                   onClick={() => handelSelectColor(index, color)}
-                  style={{ backgroundColor: color }}
-                  className={
-                    colorCheck === index
-                      ? "flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 border-2 border-blue-400 "
-                      : "flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 "
+                  style={{ backgroundColor: color, }}
+                    className={
+                    `${colorCheck===index?"border-2 border-blue-400":"border-2 border-gray-300"}
+                    flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 `
                   }
                 />
               );

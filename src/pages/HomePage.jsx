@@ -41,6 +41,7 @@ const HomePage = () => {
           />
         </Suspense>
       </div>
+      
 
       <div className="py-4">
         <Suspense fallback={<LoadingSpinner />}>

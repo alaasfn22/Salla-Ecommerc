@@ -6,17 +6,18 @@ import GetCategoryHooks from "../Hooks/GetCategoryHooks";
 const CategoryPage = () => {
   const [category, pageCount, handelOnSelectPage, isLoading] =
     GetCategoryHooks();
-  console.log(category);
+    if(isLoading){
+      return <LoadingSpinner/>
+    }
   return (
-    <div className="container my-8 ">
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <div className="grid grid-cols-16 bg-main-Color p-4 rounded-xl gap-4  ">
+    <div className="container py-8 ">
+      
+        <div className="grid grid-cols-16 bg-white border-2  p-4 rounded-xl gap-4  ">
           {category.data ? (
             category.data.map((category) => {
               return (
                 <CatCard
+                
                   key={category.id}
                   name={category.name}
                   image={category.image}
@@ -27,7 +28,7 @@ const CategoryPage = () => {
             <p>no product found</p>
           )}
         </div>
-      )}
+      
       <CustomePagination
         handelOnSelectPage={handelOnSelectPage}
         pageCount={pageCount}

@@ -38,7 +38,13 @@ const ProductGallery = ({ product }) => {
                   key={index}
                   onClick={() => setImageCover(image)}
                   style={{ cursor: "pointer" }}
-                  className="border-2 bg-white h-auto overflow-hidden p-2  rounded-lg "
+                  className={
+                    `${
+                      image === imageCover?
+                      "border-2 bg-white border-blue-300 h-auto overflow-hidden p-2  rounded-lg ":
+                      "border-2 bg-white h-auto overflow-hidden p-2  rounded-lg border-gray-300"
+                    }`
+                  }
                 >
                   <LazyLoadImage
                     className="h-full mx-auto max-w-full object-contain"

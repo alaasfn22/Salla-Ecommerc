@@ -1,8 +1,8 @@
 const Gallery = () => {
   return (
-    <div
-      style={{ backgroundColor: "#f0f9ff" }}
-      className="grid grid-cols-2 py-4 md:grid-cols-4 gap-4 p-4 my-4 rounded-xl"
+    <div className="pt-8" >
+      <div
+      className="grid bg-white grid-cols-2  md:grid-cols-4 gap-4 p-4  rounded-xl"
     >
       <div className="grid gap-4">
         <div>
@@ -96,6 +96,7 @@ const Gallery = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

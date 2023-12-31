@@ -11,8 +11,19 @@ import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import BrandPage from "./pages/BrandPage";
 import ProductDetails from "./pages/ProductDetails";
+import { useEffect, useState } from "react";
+import PageLoading from "./helper/PageLoading";
 
 function App() {
+  const [loading,setLoading]=useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000);
+  }, []);
+  if(loading){
+    return <PageLoading/>
+  }
   const router = createBrowserRouter([
     {
       path: "/dashboard",

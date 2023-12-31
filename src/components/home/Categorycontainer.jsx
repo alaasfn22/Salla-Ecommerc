@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -16,7 +17,7 @@ const Categorycontainer = ({ catLoading, category }) => {
         pathname="/category"
         title="All Categories"
       />
-      <div className="p-4 rounded-xl bg-main-Color">
+      <div className="p-4 rounded-xl bg-white">
         <Swiper
       slidesPerView={1}
       spaceBetween={20}

@@ -12,6 +12,10 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, isLoading, category, brand, likeProduct] =
     ProductDetailsHooks(id);
+    if(isLoading){
+      return <LoadingSpinner/>
+    }
+   
   return (
     <div className="container py-8">
         <ProductDetailsContainer
@@ -20,9 +24,11 @@ const ProductDetails = () => {
           brand={brand}
           category={category}
         />
-      <Suspense fallback={<LoadingSpinner />}>
-        <ProductLikeContainer likeProduct={likeProduct} isLoading={isLoading} />
-      </Suspense>
+     {
+      likeProduct&& <Suspense fallback={<LoadingSpinner />}>
+      <ProductLikeContainer likeProduct={likeProduct} isLoading={isLoading} />
+    </Suspense>
+     }
     </div>
   );
 };

@@ -13,7 +13,7 @@ const ProductPage = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className="grid grid-cols-18 py-4 gap-8 bg-main-Color p-4 rounded-xl  ">
+        <div className="grid grid-cols-18 py-4 gap-8 bg-white border-2 p-4 rounded-xl  ">
           {allProducts ? (
             allProducts.map((product) => {
               return <ProductCard key={product.id} product={product} />;
