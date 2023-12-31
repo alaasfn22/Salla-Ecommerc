@@ -41,8 +41,8 @@ const ProductGallery = ({ product }) => {
                   className={
                     `${
                       image === imageCover?
-                      "border-2 bg-white border-blue-300 h-auto overflow-hidden p-2  rounded-lg ":
-                      "border-2 bg-white h-auto overflow-hidden p-2  rounded-lg border-gray-300"
+                      "border-2 bg-white border-blue-300 h-auto max-h-[100px] overflow-hidden p-2  rounded-lg ":
+                      "border-2 bg-white h-auto max-h-[100px] overflow-hidden p-2  rounded-lg border-gray-300"
                     }`
                   }
                 >
