@@ -1,8 +1,9 @@
 "use client";
 
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
+import { CustomeToast, customeContainer } from "./Toast";
 function NaveBar() {
   const links = [
     {
@@ -23,29 +24,40 @@ function NaveBar() {
     },
   ];
   // const { auth, setAuth } = useAhthContext()
-  const auth = JSON.parse(localStorage.getItem("auth"));
-  let userName = auth?.userDetails?.name;
-  let userEmail = auth?.userDetails?.email;
+  const auth = JSON.parse(localStorage.getItem("userData"));
+  let userName = auth?.name;
+  let userEmail = auth?.email;
   const logOut = () => {
-    localStorage.removeItem("auth");
-    window.location.reload();
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    CustomeToast("success", "Logout Successfully");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
+   <>
+   {
+    customeContainer()
+   }
     <Navbar className="border-b-2 border-gray-100 ">
+      
       <Navbar.Brand>
         <img src="vite.svg" className="mr-3 h-6 sm:h-9" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite React
+          Salla
         </span>
       </Navbar.Brand>
       <div className="flex gap-4 md:order-2">
         {!auth && (
           <Link to="/login">
-            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign In</button>
+            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              Sign In
+            </button>
           </Link>
         )}
-        {auth && (
+        {userName && (
           <Dropdown
             arrowIcon={false}
             inline
@@ -63,7 +75,7 @@ function NaveBar() {
                 {userEmail}
               </span>
             </Dropdown.Header>
-            {auth.userDetails.role === "super_admin" && (
+            {auth?.role === "admin" && (
               <Dropdown.Item>
                 <Link to="/dashboard">Dashboard</Link>
               </Dropdown.Item>
@@ -86,6 +98,7 @@ function NaveBar() {
         <Navbar.Link></Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
+   </>
   );
 }
 export default NaveBar;

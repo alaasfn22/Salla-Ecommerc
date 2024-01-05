@@ -1,18 +1,20 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import RootLayout from "./pages/RootLayout";
 import { loader as PostaLoader } from "./pages/Admin/DashBoard";
 import DashBoard from "./pages/Admin/DashBoard";
 import DashBoardLayout from "./pages/Admin/DashBoardLayout";
 import UsersPage from "./pages/Admin/UsersPage";
 import LoginPage from "./pages/Auth/LoginPage";
 import Products from "./pages/Admin/Products";
-import ProductPage from "./pages/ProductPage";
-import CategoryPage from "./pages/CategoryPage";
-import BrandPage from "./pages/BrandPage";
-import ProductDetails from "./pages/ProductDetails";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import PageLoading from "./helper/PageLoading";
+import LoadingSpinner from "./helper/Spinner";
+import RegisterPage from "./pages/Auth/RegisterPage";
+const HomePage=lazy(()=>import('./pages/HomePage'))
+const ProductPage=lazy(()=>import('./pages/ProductPage'))
+const CategoryPage=lazy(()=>import('./pages/CategoryPage'))
+const BrandPage=lazy(()=>import('./pages/BrandPage'))
+const ProductDetails=lazy(()=>import('./pages/ProductDetails'))
+const RootLayout=lazy(()=>import('./pages/RootLayout'))
 
 function App() {
   const [loading,setLoading]=useState(true)
@@ -51,7 +53,9 @@ function App() {
 
     {
       path: "/",
-      element: <RootLayout />,
+      element: <Suspense fallback={<LoadingSpinner/>}>
+        <RootLayout/>
+      </Suspense>,
       children: [
         {
           index: true,
@@ -59,25 +63,37 @@ function App() {
         },
         {
           path: "/products",
-          element: <ProductPage />,
+          element:<Suspense fallback={<LoadingSpinner/>}>
+            <ProductPage/>
+          </Suspense>,
         },
         {
           path: "/category",
-          element: <CategoryPage />,
+          element: <Suspense fallback={<LoadingSpinner/>}>
+            <CategoryPage/>
+          </Suspense>,
         },
         {
           path: "/brand",
-          element: <BrandPage />,
+          element:<Suspense fallback={<LoadingSpinner/>}>
+            <BrandPage/>
+          </Suspense>,
         },
         {
           path: "/productDetails/:id",
-          element: <ProductDetails />,
+          element: <Suspense fallback={<LoadingSpinner/>}>
+            <ProductDetails/>
+            </Suspense>,
         },
       ],
     },
     {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/register",
+      element:<RegisterPage/>,
     },
     {
       path: "*",

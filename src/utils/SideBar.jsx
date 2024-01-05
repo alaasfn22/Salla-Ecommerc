@@ -4,11 +4,9 @@ import { useLocation, Navigate } from "react-router-dom";
 
 const SideBar = () => {
     const [open, setOpen] = useState(false)
-    // const { auth } = useAhthContext()
     const location = useLocation()
-    const auth = JSON.parse(localStorage.getItem("auth"))
-    let token = auth?.token
-    console.log(token)
+    const token = localStorage.getItem("token")
+  
 
     return (
 
