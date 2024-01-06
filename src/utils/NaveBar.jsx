@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import { CustomeToast, customeContainer } from "./Toast";
 import SwitchBtn from "./switchBtn/SwitchBtn";
+import { useEffect, useState } from "react";
 function NaveBar() {
   const links = [
     {
@@ -24,6 +25,22 @@ function NaveBar() {
       path: "/brand",
     },
   ];
+  const [openNav, setOpenNav] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleNav = () => {
+    setOpenNav(!openNav);
+  };
+
+  const handleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
+
+
+
+
+
   // const { auth, setAuth } = useAhthContext()
   const auth = JSON.parse(localStorage.getItem("userData"));
   let userName = auth?.name;
@@ -38,71 +55,138 @@ function NaveBar() {
   };
 
   return (
-   <>
-   {
-    customeContainer()
-   }
-    <Navbar className="border-b-2 border-gray-100 ">
-      
-      <Navbar.Brand>
-        <img src="vite.svg" className="mr-3 h-6 sm:h-9" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Salla
-        </span>
-      </Navbar.Brand>
-      
-      <div className="flex gap-4 md:order-2">
-        {!auth && (
-          <Link to="/login">
-            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-              Sign In
-            </button>
-          </Link>
-        )}
-        {userName && (
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <Avatar
-                alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                rounded
-              />
-            }
+     <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            className="h-8"
+            alt="Flowbite Logo"
+          />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            Flowbite
+          </span>
+        </Link>
+        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          
+         {
+          userName ? (
+            <button
+            type="button"
+            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            onClick={handleMenu}         
+            
           >
-            <Dropdown.Header>
-              <span className="block text-sm">{userName}</span>
-              <span className="block truncate text-sm font-medium">
+            <span className="sr-only">Open user menu</span>
+            <img
+              className="w-8 h-8 rounded-full"
+              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              alt="user photo"
+            />
+          </button>
+          ):(
+ <Link to="/login">
+            <button className=" hover:bg-blue-700 dark:text-white hover:text-white delay-75 ease-in-ou- transition-all font-semibold p-2 rounded-lg">
+  sign in
+</button></Link>
+          )
+         }
+          {/* Dropdown menu */}
+          <div
+            className={
+              openMenu
+                ? "absolute top-16 right-[20px] z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                : "hidden"
+            }
+            >
+            <div className="px-4 py-3">
+              <span className="block text-sm text-gray-900 dark:text-white">
+                {userName}
+              </span>
+              <span onClick={handleMenu} className="block text-sm  text-gray-500 truncate dark:text-gray-400">
                 {userEmail}
               </span>
-            </Dropdown.Header>
-            {auth?.role === "admin" && (
-              <Dropdown.Item>
-                <Link to="/dashboard">Dashboard</Link>
-              </Dropdown.Item>
-            )}
+            </div>
+            <ul className="py-2" >
+             {
+              auth?.role === "admin" && (
+                <li>
+                <Link
+                  to="/dashboard"
+                 
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              )
+             }
 
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
-          </Dropdown>
-        )}
-        <SwitchBtn/>
-        <Navbar.Toggle />
-        
+              <li>
+                <Link
+                  href="/"
+                  onClick={logOut}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            onClick={handleNav}
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          >
+            
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={
+            openNav
+              ? "items-center justify-between w-full md:flex md:w-auto md:order-1"
+              : "hidden items-center justify-between w-full md:flex md:w-auto md:order-1"
+          }
+          // className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+        >
+          <ul className="flex flex-col gap-2 font-medium p-4 md:p-0 mt-4 border-2 border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:items-center   md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {links.map((link, index) => {
+              return (
+                <li key={index} className="p-2">
+                  <Link
+                    to={link.path}
+                    onClick={()=>setOpenNav(false)}
+                    className="block py-2 px-3  border-b-2 md:border-none capitalize  rounded-xl md:bg-transparent md:p-0 dark:text-white dark:border-gray-700 hover:text-blue-400    "
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
+          <span className="flex justify-end items-end"><SwitchBtn/></span>
+          </ul>
+        </div>
       </div>
-      <Navbar.Collapse>
-        {links.map((link) => {
-          return (
-            <Navbar.Link key={link.name}>
-              <NavLink to={link.path}>{link.name}</NavLink>
-            </Navbar.Link>
-          );
-        })}
-        <Navbar.Link></Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
-   </>
+    </nav>
   );
 }
 export default NaveBar;
