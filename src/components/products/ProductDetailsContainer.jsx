@@ -10,7 +10,7 @@ const ProductDetailsContainer = ({ product, brand, category ,isLoading }) => {
 
   
   return (
-    <div className="flex items-center   justify-center flex-wrap lg:flex-nowrap gap-8 rounded-xl bg-white p-4">
+    <div className="flex items-center   justify-center flex-wrap lg:flex-nowrap gap-8 rounded-xl bg-white p-4  dark:bg-gray-800 dark:border-gray-700">
               <>
           <div className="w-full lg:w-1/2">
             <ProductGallery product={product}  />

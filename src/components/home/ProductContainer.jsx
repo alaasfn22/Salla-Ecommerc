@@ -11,7 +11,7 @@ const ProductContainer = ({ isLoading, allProducts }) => {
         pathname="/products"
         title="All Products"
       />
-      <div className="p-4 rounded-xl border-2 bg-white">
+      <div className="p-4 rounded-xl border-2 bg-white  dark:bg-gray-800 dark:border-gray-700">
               {isLoading ? (
           <LoadingSpinner />
         ) : (

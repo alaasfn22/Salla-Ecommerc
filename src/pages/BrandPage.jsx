@@ -16,7 +16,7 @@ const BrandPage = () => {
   }
   return (
     <div className="container py-8 ">
-            <div className="grid grid-cols-16 gap-4 p-4 bg-white border-2 rounded-xl  ">
+            <div className="grid grid-cols-16 gap-4 p-4 bg-white border-2 rounded-xl   dark:bg-gray-800 dark:border-gray-700">
           {brands.data ? (
             brands.data.map((brand) => {
               return (

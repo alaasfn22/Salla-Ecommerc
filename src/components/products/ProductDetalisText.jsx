@@ -12,7 +12,7 @@ const ProductDetalisText = ({ product, brand, category }) => {
   };
 
   return (
-    <div className=" flex flex-col gap-8 md:px-8">
+    <div className=" flex flex-col gap-8 md:px-8  dark:text-gray-50">
       <div className="flex flex-col gap-4">
         <h3 className="text-2xl font-semibold capitalize">
           title : {product?.title}

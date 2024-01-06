@@ -17,7 +17,7 @@ const Categorycontainer = ({ catLoading, category }) => {
         pathname="/category"
         title="All Categories"
       />
-      <div className="p-4 rounded-xl bg-white">
+      <div className="p-4 rounded-xl bg-white  dark:bg-gray-800 dark:border-gray-700">
         <Swiper
       slidesPerView={1}
       spaceBetween={20}

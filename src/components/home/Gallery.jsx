@@ -2,7 +2,7 @@ const Gallery = () => {
   return (
     <div className="pt-8" >
       <div
-      className="grid bg-white grid-cols-2  md:grid-cols-4 gap-4 p-4  rounded-xl"
+      className="grid bg-white grid-cols-2  md:grid-cols-4 gap-4 p-4  rounded-xl  dark:bg-gray-800 dark:border-gray-700 border-2"
     >
       <div className="grid gap-4">
         <div>

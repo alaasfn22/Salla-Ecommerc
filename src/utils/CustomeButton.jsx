@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CustomeButton = ({ pathname, title, name }) => {
   return (
-    <div className="flex py-4 justify-between">
+    <div className="flex py-4 justify-between dark:text-white">
       <h1 className="text-2xl  font-bold">{name}</h1>
       <Link to={pathname}>
         {title && (

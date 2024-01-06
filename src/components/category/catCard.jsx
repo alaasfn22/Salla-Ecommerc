@@ -7,8 +7,7 @@ const CatCard = ({ name, image }) => {
   return (
     <>
       <div
-      
-        className="flex my-4 flex-col justify-between overflow-hidden   items-center p-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="flex my-4 flex-col justify-between overflow-hidden   items-center p-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         <LazyLoadImage
           className="object-contain p-2   w-20 h-20"

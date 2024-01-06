@@ -18,7 +18,7 @@ const CategoryPage = () => {
     }
   return (
     <div className="container py-8 ">
-        <div className="grid grid-cols-16 bg-white border-2  p-4 rounded-xl gap-4  ">
+        <div className="grid grid-cols-16 bg-white border-2  p-4 rounded-xl gap-4  dark:bg-gray-800 dark:border-gray-700 ">
           {allcategory ? (
             allcategory.map((category) => {
               return (

@@ -1,89 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { CustomeToast, customeContainer } from "../../utils/Toast";
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/slice/Authentication";
-import { useNavigate } from "react-router-dom";
+import {  customeContainer } from "../../utils/Toast";
+import RegisterHooks from "../../Hooks/RegisterHooks";
+import { Spinner } from "flowbite-react";
+
 
 const RegisterPage = () => {
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const [handelInput, setHandelInput] = useState({
-    userName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
-  });
+  const [handelInput, handelChange, onSaveUserData,isLoading] = RegisterHooks();
 
-  const handelChange = (e) => {
-    setHandelInput({
-      ...handelInput,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const customeValidation=()=>{
-    if(handelInput.userName === ""){
-      CustomeToast("warn","please Enter Name")
-      return;
-    }
-    if(handelInput.email === ""){
-      CustomeToast("warn","please Enter Email")
-      return;
-    }
-     if(handelInput.password === ""){
-      CustomeToast("warn","please Enter Password")
-      return;
-    }
-     if(handelInput.confirmPassword === ""){
-      CustomeToast("warn","please Enter Confirm Password")
-      return;
-    }
-     if(handelInput.phone === ""){
-      CustomeToast("warn","please Enter Phone")
-      return;
-    }
-     if(handelInput.password !== handelInput.confirmPassword ){
-      CustomeToast("warn","password not match")
-      return;
-    }
-   
-  }
-  const {createUser,isLoading,error}=useSelector((state)=>state.auth)
-
-  const onSaveUserData =async (e) => {
-    e.preventDefault();
-    customeValidation();
-    const data={
-      name:handelInput.userName,
-      email:handelInput.email,
-      password:handelInput.password,
-      passwordConfirm:handelInput.confirmPassword,
-      phone:handelInput.phone
-    }
-    await dispatch(registerUser(data))
-
-  };
-  useEffect(()=>{
-    if(isLoading===false){
-      if(createUser){
-        if(createUser?.token){
-          localStorage.setItem("token",createUser?.token)
-          CustomeToast("success","Register Successfully")
-          setTimeout(()=>{
-            // navigate("/login")   
-            window.location.replace("/login")         
-          },2000)
-        }else{
-          localStorage.removeItem("token")
-        }
-      }
-      if(error?.status===400){
-        CustomeToast("error",error.data.errors[0].msg)
-      }
-    }    
-  },[isLoading])
-  
   return (
     <section className=" min-h-screen dark:bg-gray-900">
       {customeContainer()}
@@ -205,7 +127,9 @@ const RegisterPage = () => {
                 onClick={onSaveUserData}
                 className="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Create account
+               {
+                 isLoading ? <Spinner aria-label="Large spinner example" size="lg" /> : "Register"
+               }
               </button>
             </form>
           </div>

@@ -4,6 +4,7 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import { CustomeToast, customeContainer } from "./Toast";
+import SwitchBtn from "./switchBtn/SwitchBtn";
 function NaveBar() {
   const links = [
     {
@@ -49,6 +50,7 @@ function NaveBar() {
           Salla
         </span>
       </Navbar.Brand>
+      
       <div className="flex gap-4 md:order-2">
         {!auth && (
           <Link to="/login">
@@ -85,7 +87,9 @@ function NaveBar() {
             <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
           </Dropdown>
         )}
+        <SwitchBtn/>
         <Navbar.Toggle />
+        
       </div>
       <Navbar.Collapse>
         {links.map((link) => {
