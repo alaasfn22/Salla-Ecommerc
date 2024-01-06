@@ -1,7 +1,10 @@
 import  './pageLoading.css'
 const PageLoading = () => {
   return (
-    <div className="socket">
+    <div className='bg-gray-900'>
+
+    <div className="socket 
+    ">
     <div className="gel center-gel">
       <div className="hex-brick h1" />
       <div className="hex-brick h2" />
@@ -188,6 +191,7 @@ const PageLoading = () => {
       <div className="hex-brick h3" />
     </div>
   </div>
+    </div>
   
   )
 }

@@ -55,7 +55,75 @@ function NaveBar() {
   };
 
   return (
-     <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    //  <>
+    //  {
+    //   customeContainer()
+    //  }
+    //   <Navbar className="border-b-2 border-gray-100 ">
+
+    //     <Navbar.Brand>
+    //       <img src="vite.svg" className="mr-3 h-6 sm:h-9" />
+    //       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+    //         Salla
+    //       </span>
+    //     </Navbar.Brand>
+
+    //     <div className="flex gap-4 md:order-2">
+    //       {!auth && (
+    //         <Link to="/login">
+    //           <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+    //             Sign In
+    //           </button>
+    //         </Link>
+    //       )}
+    //       {userName && (
+    //         <Dropdown
+    //           arrowIcon={false}
+    //           inline
+    //           label={
+    //             <Avatar
+    //               alt="User settings"
+    //               img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+    //               rounded
+    //             />
+    //           }
+    //         >
+    //           <Dropdown.Header>
+    //             <span className="block text-sm">{userName}</span>
+    //             <span className="block truncate text-sm font-medium">
+    //               {userEmail}
+    //             </span>
+    //           </Dropdown.Header>
+    //           {auth?.role === "admin" && (
+    //             <Dropdown.Item>
+    //               <Link to="/dashboard">Dashboard</Link>
+    //             </Dropdown.Item>
+    //           )}
+
+    //           <Dropdown.Divider />
+    //           <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
+    //         </Dropdown>
+    //       )}
+
+    //       <Navbar.Toggle />
+
+    //     </div>
+    //   <div>
+    //       <Navbar.Collapse>
+    //       {links.map((link) => {
+    //         return (
+    //           <Navbar.Link key={link.name}>
+    //             <NavLink to={link.path}>{link.name}</NavLink>
+    //           </Navbar.Link>
+    //         );
+    //       })}
+
+    //       <SwitchBtn/>
+    //     </Navbar.Collapse>
+    //   </div>
+    //   </Navbar>
+    //  </>
+    <nav className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           to="/"
@@ -168,17 +236,17 @@ function NaveBar() {
           }
           // className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
         >
-          <ul className="flex flex-col gap-2 font-medium p-4 md:p-0 mt-4 border-2 border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:items-center   md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col gap-2 font-medium p-4 md:p-0 mt-4 border dark:bg-gray-800 dark:border-gray-700 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:items-center  ">
             {links.map((link, index) => {
               return (
                 <li key={index} className="p-2">
-                  <Link
+                  <NavLink
                     to={link.path}
-                    onClick={()=>setOpenNav(false)}
-                    className="block py-2 px-3  border-b-2 md:border-none capitalize  rounded-xl md:bg-transparent md:p-0 dark:text-white dark:border-gray-700 hover:text-blue-400    "
+                    onClick={()=>{setOpenNav(false)}}
+                    className="block py-2 px-3  border-b-2 md:border-none capitalize  rounded-xl md:bg-transparent md:p-0 dark:text-white dark:border-gray-700 hover:text-blue-400     "
                   >
                     {link.name}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}
