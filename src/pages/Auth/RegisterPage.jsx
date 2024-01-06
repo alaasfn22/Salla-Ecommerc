@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { customeContainer } from "../../utils/Toast";
+import { CustomeToast, customeContainer } from "../../utils/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/slice/Authentication";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
   const [handelInput, setHandelInput] = useState({
     userName: "",
     email: "",
@@ -17,8 +22,71 @@ const RegisterPage = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const customeValidation=()=>{
+    if(handelInput.userName === ""){
+      CustomeToast("warn","please Enter Name")
+      return;
+    }
+    if(handelInput.email === ""){
+      CustomeToast("warn","please Enter Email")
+      return;
+    }
+     if(handelInput.password === ""){
+      CustomeToast("warn","please Enter Password")
+      return;
+    }
+     if(handelInput.confirmPassword === ""){
+      CustomeToast("warn","please Enter Confirm Password")
+      return;
+    }
+     if(handelInput.phone === ""){
+      CustomeToast("warn","please Enter Phone")
+      return;
+    }
+     if(handelInput.password !== handelInput.confirmPassword ){
+      CustomeToast("warn","password not match")
+      return;
+    }
+   
+  }
+  const {createUser,isLoading,error}=useSelector((state)=>state.auth)
+
+  const onSaveUserData =async (e) => {
+    e.preventDefault();
+    customeValidation();
+    const data={
+      name:handelInput.userName,
+      email:handelInput.email,
+      password:handelInput.password,
+      passwordConfirm:handelInput.confirmPassword,
+      phone:handelInput.phone
+    }
+    await dispatch(registerUser(data))
+
+  };
+  useEffect(()=>{
+    if(isLoading===false){
+      if(createUser){
+        if(createUser?.token){
+          localStorage.setItem("token",createUser?.token)
+          CustomeToast("success","Register Successfully")
+          setTimeout(()=>{
+            // navigate("/login")   
+            window.location.replace("/login")         
+          },2000)
+        }else{
+          localStorage.removeItem("token")
+        }
+      }
+      if(error?.status===400){
+        CustomeToast("error",error.data.errors[0].msg)
+      }
+    }    
+  },[isLoading])
+  
   return (
     <section className=" min-h-screen dark:bg-gray-900">
+      {customeContainer()}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -90,7 +158,6 @@ const RegisterPage = () => {
                     value={handelInput.phone}
                     aria-describedby="helper-text-explanation"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     placeholder="123-456-7890"
                     required=""
                   />
@@ -116,17 +183,17 @@ const RegisterPage = () => {
               </div>
               <div>
                 <label
-                  htmlFor="confirmpassword"
+                  htmlFor="confirmPassword"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Confirm password
                 </label>
                 <input
                   type="password"
-                  name="confirmpassword"
-                  id="confirmpassword"
+                  name="confirmPassword"
+                  id="confirmPassword"
                   onChange={handelChange}
-                  value={handelInput.confirmpassword}
+                  value={handelInput.confirmPassword}
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
@@ -135,6 +202,7 @@ const RegisterPage = () => {
 
               <button
                 type="submit"
+                onClick={onSaveUserData}
                 className="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Create account
