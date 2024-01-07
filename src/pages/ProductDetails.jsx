@@ -9,12 +9,14 @@ const ProductLikeContainer = lazy(() =>
 );
 
 const ProductDetails = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+ 
   const { id } = useParams();
   const [product, isLoading, category, brand, likeProduct] =
     ProductDetailsHooks(id);
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [product]);
+
     if(isLoading){
       return <LoadingSpinner/>
     }

@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import { CustomeToast } from "./Toast";
@@ -24,6 +23,10 @@ function NaveBar() {
       name: "brand",
       path: "/brand",
     },
+    {
+      name: "Cart",
+      path: "/cart",
+    }
   ];
   const [openNav, setOpenNav] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);

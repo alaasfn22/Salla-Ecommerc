@@ -15,6 +15,7 @@ const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const BrandPage = lazy(() => import("./pages/BrandPage"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const RootLayout = lazy(() => import("./pages/RootLayout"));
+const CartPage = lazy(() => import("./pages/CartPage"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -95,6 +96,14 @@ function App() {
             </Suspense>
           ),
         },
+        {
+          path: "/cart",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <CartPage />
+            </Suspense>
+          ),
+        }
       ],
     },
     {
