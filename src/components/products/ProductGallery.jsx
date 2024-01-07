@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { imageAPi } from "../../Api/imageAPI";
+import LoadingSpinner from "../../helper/Spinner";
 
-const ProductGallery = ({ product }) => {
+const ProductGallery = ({ product ,isLoading}) => {
   const [images, setImages] = useState([]);
   const [imageCover, setImageCover] = useState("");
   useEffect(() => {
@@ -17,6 +18,9 @@ const ProductGallery = ({ product }) => {
       setImageCover(product.imageCover);
     }
   }, [product.imageCover]);
+  if(isLoading){
+    return <LoadingSpinner/>
+  }
   return (
     <div className="flex flex-col gap-4 ">
       <>

@@ -9,22 +9,22 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import PageLoading from "./helper/PageLoading";
 import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
-const HomePage=lazy(()=>import('./pages/HomePage'))
-const ProductPage=lazy(()=>import('./pages/ProductPage'))
-const CategoryPage=lazy(()=>import('./pages/CategoryPage'))
-const BrandPage=lazy(()=>import('./pages/BrandPage'))
-const ProductDetails=lazy(()=>import('./pages/ProductDetails'))
-const RootLayout=lazy(()=>import('./pages/RootLayout'))
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const BrandPage = lazy(() => import("./pages/BrandPage"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const RootLayout = lazy(() => import("./pages/RootLayout"));
 
 function App() {
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 3000);
   }, []);
-  if(loading){
-    return <PageLoading/>
+  if (loading) {
+    return <PageLoading />;
   }
   const router = createBrowserRouter([
     {
@@ -53,9 +53,11 @@ function App() {
 
     {
       path: "/",
-      element: <Suspense fallback={<LoadingSpinner/>}>
-        <RootLayout/>
-      </Suspense>,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <RootLayout />
+        </Suspense>
+      ),
       children: [
         {
           index: true,
@@ -63,27 +65,35 @@ function App() {
         },
         {
           path: "/products",
-          element:<Suspense fallback={<LoadingSpinner/>}>
-            <ProductPage/>
-          </Suspense>,
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductPage />
+            </Suspense>
+          ),
         },
         {
           path: "/category",
-          element: <Suspense fallback={<LoadingSpinner/>}>
-            <CategoryPage/>
-          </Suspense>,
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <CategoryPage />
+            </Suspense>
+          ),
         },
         {
           path: "/brand",
-          element:<Suspense fallback={<LoadingSpinner/>}>
-            <BrandPage/>
-          </Suspense>,
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <BrandPage />
+            </Suspense>
+          ),
         },
         {
           path: "/productDetails/:id",
-          element: <Suspense fallback={<LoadingSpinner/>}>
-            <ProductDetails/>
-            </Suspense>,
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductDetails />
+            </Suspense>
+          ),
         },
       ],
     },
@@ -93,14 +103,18 @@ function App() {
     },
     {
       path: "/register",
-      element:<RegisterPage/>,
+      element: <RegisterPage />,
     },
     {
       path: "*",
       element: <p>There is nothing here: 404!</p>,
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <div className="bg-main-Color dark:bg-gray-800    dark:border-gray-700 min-h-screen    ">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

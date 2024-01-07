@@ -19,6 +19,8 @@ export const customeContainer=()=>{
             pauseOnFocusLoss
             draggable
             pauseOnHover
+            theme={localStorage.getItem("theme") === "dark" ? "dark" : "light"}
+            
         />
     )
 }

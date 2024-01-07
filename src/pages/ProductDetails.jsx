@@ -1,7 +1,7 @@
 import ProductDetailsHooks from "../Hooks/ProductDetailsHooks";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../helper/Spinner";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import ProductDetailsContainer from "../components/products/ProductDetailsContainer";
 
 const ProductLikeContainer = lazy(() =>
@@ -9,6 +9,9 @@ const ProductLikeContainer = lazy(() =>
 );
 
 const ProductDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
   const [product, isLoading, category, brand, likeProduct] =
     ProductDetailsHooks(id);

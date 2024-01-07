@@ -3,9 +3,9 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
-import { CustomeToast, customeContainer } from "./Toast";
+import { CustomeToast } from "./Toast";
 import SwitchBtn from "./switchBtn/SwitchBtn";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 function NaveBar() {
   const links = [
     {
@@ -55,75 +55,8 @@ function NaveBar() {
   };
 
   return (
-    //  <>
-    //  {
-    //   customeContainer()
-    //  }
-    //   <Navbar className="border-b-2 border-gray-100 ">
-
-    //     <Navbar.Brand>
-    //       <img src="vite.svg" className="mr-3 h-6 sm:h-9" />
-    //       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-    //         Salla
-    //       </span>
-    //     </Navbar.Brand>
-
-    //     <div className="flex gap-4 md:order-2">
-    //       {!auth && (
-    //         <Link to="/login">
-    //           <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-    //             Sign In
-    //           </button>
-    //         </Link>
-    //       )}
-    //       {userName && (
-    //         <Dropdown
-    //           arrowIcon={false}
-    //           inline
-    //           label={
-    //             <Avatar
-    //               alt="User settings"
-    //               img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-    //               rounded
-    //             />
-    //           }
-    //         >
-    //           <Dropdown.Header>
-    //             <span className="block text-sm">{userName}</span>
-    //             <span className="block truncate text-sm font-medium">
-    //               {userEmail}
-    //             </span>
-    //           </Dropdown.Header>
-    //           {auth?.role === "admin" && (
-    //             <Dropdown.Item>
-    //               <Link to="/dashboard">Dashboard</Link>
-    //             </Dropdown.Item>
-    //           )}
-
-    //           <Dropdown.Divider />
-    //           <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
-    //         </Dropdown>
-    //       )}
-
-    //       <Navbar.Toggle />
-
-    //     </div>
-    //   <div>
-    //       <Navbar.Collapse>
-    //       {links.map((link) => {
-    //         return (
-    //           <Navbar.Link key={link.name}>
-    //             <NavLink to={link.path}>{link.name}</NavLink>
-    //           </Navbar.Link>
-    //         );
-    //       })}
-
-    //       <SwitchBtn/>
-    //     </Navbar.Collapse>
-    //   </div>
-    //   </Navbar>
-    //  </>
-    <nav className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    
+    <nav className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 sticky top-0 z-10 w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           to="/"
