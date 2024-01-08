@@ -24,7 +24,7 @@ const CartCard = ({ product }) => {
           }
           alt="logo"
           loading="lazy"
-          className="object-contain    w-full dark:border-gray-500   border rounded-lg h-full"
+          className="object-contain p-2    w-full dark:border-gray-500   border rounded-lg h-full"
         />
       </div>
       <div className="flex flex-col sm:flex-row  rounded  sm:justify-between sm:flex-1 p-2 gap-4">
