@@ -27,10 +27,6 @@ function NaveBar() {
       name: "brand",
       path: "/brand",
     },
-    {
-      name: "Cart",
-      path: "/cart",
-    },
   ];
   const [openNav, setOpenNav] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
