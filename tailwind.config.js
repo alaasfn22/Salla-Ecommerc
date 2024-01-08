@@ -7,8 +7,7 @@ export default {
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   darkMode: 'class',
-  theme: {
-  
+  theme: {  
     container: {
       center: true,
       padding: {
@@ -33,6 +32,7 @@ export default {
         "main-Color": "#f0f9ff",
         "gray-dark": "#273444",
         "gray-light": "#d3dce6",
+        "btn-color":"#73C0FC"
       },
     },
   },
