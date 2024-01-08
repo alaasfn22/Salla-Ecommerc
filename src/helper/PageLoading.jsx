@@ -1,7 +1,7 @@
 import  './pageLoading.css'
 const PageLoading = () => {
   return (
-    <div className='dark:bg-gray-800 '>
+    <div className=' '>
 
     <div className="socket 
     ">
