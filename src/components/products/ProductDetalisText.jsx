@@ -1,18 +1,52 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CustomeToast, customeContainer } from "../../utils/Toast";
+import { addtoCart } from "../../redux/slice/CartSlice";
 
 const ProductDetalisText = ({ product, brand, category }) => {
+  const dispatch = useDispatch();
   const [colorCheck, setColorCheck] = useState("");
   const [color, setColor] = useState("");
   const handelSelectColor = (colorIndex, color) => {
     setColor(color);
     setColorCheck(colorIndex);
   };
+  const addToCart = async (e) => {
+    e.preventDefault();
+    if (product.availableColors.length >= 1) {
+      if (color === "") {
+        CustomeToast("error", "please select color");
+        return;
+      } else {
+        setColor("");
+      }
+    }
+    const data = { productId: product._id, color: color };
+    await dispatch(addtoCart(data));
+  };
+  const { cart, isLoading, error } = useSelector((state) => state.cart);
+  
+  useEffect(() => {
+    if (isLoading === false) {
+      if (cart?.status === 200) {
+        CustomeToast("success", cart?.data?.message);
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
+      }
+      //  else (cart?.status !== 200) {
+      //   CustomeToast("error", "Please log in first");
+      // }
+    }
+  }, [isLoading]);
+
 
   return (
     <div className=" flex flex-col gap-8 md:px-8  dark:text-gray-50">
+      {customeContainer()}
       <div className="flex flex-col gap-4">
         <h3 className="text-2xl font-semibold capitalize">
           title : {product?.title}
@@ -41,23 +75,23 @@ const ProductDetalisText = ({ product, brand, category }) => {
 
       <div className=" flex flex-wrap gap-4  ">
         <>
-          {product.availableColors ? (
-            product.availableColors.map((color, index) => {
-              return (
-                <span
-                  key={color}
-                  onClick={() => handelSelectColor(index, color)}
-                  style={{ backgroundColor: color, }}
-                    className={
-                    `${colorCheck===index?"border-2 border-blue-400":"border-2 border-gray-300"}
-                    flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 `
-                  }
-                />
-              );
-            })
-          ) : (
-            null
-          )}
+          {product.availableColors
+            ? product.availableColors.map((color, index) => {
+                return (
+                  <span
+                    key={color}
+                    onClick={() => handelSelectColor(index, color)}
+                    style={{ backgroundColor: color }}
+                    className={`${
+                      colorCheck === index
+                        ? "border-2 border-blue-400"
+                        : "border-2 border-gray-300"
+                    }
+                    flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 `}
+                  />
+                );
+              })
+            : null}
         </>
 
         <p className=""></p>
@@ -65,6 +99,7 @@ const ProductDetalisText = ({ product, brand, category }) => {
 
       <div className="mx-auto lg:mx-0">
         <button
+          onClick={addToCart}
           type="button"
           className="text-white  bg-btn-color hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

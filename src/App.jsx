@@ -18,15 +18,15 @@ const RootLayout = lazy(() => import("./pages/RootLayout"));
 const CartPage = lazy(() => import("./pages/CartPage"));
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-  if (loading) {
-    return <PageLoading />;
-  }
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000);
+  // }, []);
+  // if (loading) {
+  //   return <PageLoading />;
+  // }
   const router = createBrowserRouter([
     {
       path: "/dashboard",
