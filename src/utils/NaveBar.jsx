@@ -27,13 +27,16 @@ function NaveBar() {
       name: "brand",
       path: "/brand",
     },
+    {
+      name: "Cart",
+      path: "/cart",
+    },
   ];
   const [openNav, setOpenNav] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleNav = () => {
     setOpenNav(!openNav);
-    var toggleBtn = document.getElementById('toggle');
     var collapseMenu = document.getElementById('collapseMenu');
     if (collapseMenu.style.display === 'block') {
       collapseMenu.style.display = 'none';
@@ -193,7 +196,7 @@ function NaveBar() {
           id="toggle"
           className="flex ml-auto lg:order-1 lg:hidden relative z-40"
         >
-          <button className="ml-7">
+          <button onClick={handleNav} className="ml-7">
             <svg
               className="w-7 h-7 dark:fill-[#fff]"
               viewBox="0 0 20 20"
