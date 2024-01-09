@@ -9,13 +9,14 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import PageLoading from "./helper/PageLoading";
 import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
+import RootLayout from './pages/RootLayout'
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const BrandPage = lazy(() => import("./pages/BrandPage"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const RootLayout = lazy(() => import("./pages/RootLayout"));
 const CartPage = lazy(() => import("./pages/CartPage"));
+
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -54,11 +55,8 @@ function App() {
 
     {
       path: "/",
-      element: (
-        <Suspense fallback={<LoadingSpinner />}>
-          <RootLayout />
-        </Suspense>
-      ),
+      element: <RootLayout />,
+
       children: [
         {
           index: true,
@@ -103,7 +101,7 @@ function App() {
               <CartPage />
             </Suspense>
           ),
-        }
+        },
       ],
     },
     {

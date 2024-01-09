@@ -17,9 +17,7 @@ const ProductDetails = () => {
       window.scrollTo(0, 0);
     }, [product]);
 
-    if(isLoading){
-      return <LoadingSpinner/>
-    }
+   
    
   return (
     <div className="container py-8">

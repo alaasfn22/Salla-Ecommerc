@@ -14,13 +14,15 @@ const CartLoggedHooks = () => {
     };
     get();
   }, []);
+
   const { loggedCart, isLoading } = useSelector((state) => state.cart);
+
   useEffect(() => {
     if (isLoading === false) {
       if (loggedCart.status === 200) {
         if (loggedCart?.data?.numOfCartItems) {
           setCartNumbers(loggedCart?.data?.numOfCartItems);
-          setTotlePrice(loggedCart?.data?.data?.totalPrice);
+          setTotlePrice(loggedCart?.data?.data?.totalCartPrice);
           setCartProducts(loggedCart?.data?.data?.products);
         }
       } else {

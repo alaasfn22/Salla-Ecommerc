@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 
-const CartCheckout = () => {
+const CartCheckout = ({totalPrice}) => {
   return (
     <div className='w-full overflow-hidden '>
   <div className="flex flex-col justify-center flex-wrap items-center gap-4 mb-6 ">
@@ -17,7 +18,7 @@ const CartCheckout = () => {
       <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-300 dark:border-gray-700 ">
         <span className="text-gray-700 dark:text-gray-400">Subtotal</span>
         <span className="text-xl font-bold text-gray-700 dark:text-gray-400 ">
-          $99
+          ${totalPrice}
         </span>
       </div>
       <div className="flex items-center justify-between pb-4 mb-4 ">
@@ -29,7 +30,7 @@ const CartCheckout = () => {
       <div className="flex items-center justify-between pb-4 mb-4 ">
         <span className="text-gray-700 dark:text-gray-400">Order Total</span>
         <span className="text-xl font-bold text-gray-700 dark:text-gray-400">
-          $99.00
+          ${totalPrice}
         </span>
       </div>
       <h2 className="text-lg text-gray-500 dark:text-gray-400">We offer:</h2>

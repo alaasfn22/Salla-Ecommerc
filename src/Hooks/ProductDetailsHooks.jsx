@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProductByCategory,
@@ -37,7 +37,8 @@ const ProductDetailsHooks = (id) => {
     if (product.category) {
       dispatch(getProductByCategory(product.category));
     }
-  }, [product]);
+  }, [product.category,product.brand]);
+
 
   const [category, setCategory] = useState("");
   useEffect(() => {
@@ -45,6 +46,8 @@ const ProductDetailsHooks = (id) => {
       setCategory(specificCategory.data);
     }
   }, [specificCategory.data]);
+
+ 
 
   const [brand, setBrand] = useState("");
   useEffect(() => {
