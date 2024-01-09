@@ -1,17 +1,11 @@
 /* eslint-disable react/prop-types */
 import {  useState } from "react";
-import { useDispatch } from "react-redux";
-import { rempveSpecificProduct } from "../../redux/slice/CartSlice";
 import {  customeContainer } from "../../utils/Toast";
+import RemoveSpecificCartHooks from "../../Hooks/RemoveSpecificCartHooks";
 
 const CartCard = ({ product }) => {
   const [count, setCount] = useState(product?.count);
-  const dispatch = useDispatch();
-  const handelDeletItem = async (e) => {
-    e.preventDefault();
-    await dispatch(rempveSpecificProduct(product._id));
-  };
- 
+ const  [handelDeletItem]=RemoveSpecificCartHooks(product)
 
   return (
     <div className="flex lg:h-40 flex-col flex-wrap sm:items-center sm:flex-row gap-4  py-4 px-2 border-b dark:border-gray-500 rounded-lg hover:bg-main-Color dark:hover:bg-gray-700 ">
