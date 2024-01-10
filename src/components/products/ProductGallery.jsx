@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { imageAPi } from "../../Api/imageAPI";
-import LoadingSpinner from "../../helper/Spinner";
 
-const ProductGallery = ({ product ,isLoading}) => {
+const ProductGallery = ({ product }) => {
   const [images, setImages] = useState([]);
   const [imageCover, setImageCover] = useState("");
   useEffect(() => {
@@ -23,8 +22,7 @@ const ProductGallery = ({ product ,isLoading}) => {
     <div className="flex flex-col gap-4 ">
       <>
         <div className="h-72 bg-white flex justify-center items-center p-4 text-center border-2  dark:bg-gray-800 dark:border-gray-700  rounded-lg  overflow-hidden ">
-       {
-         isLoading?(<LoadingSpinner/>):(
+              
           <LazyLoadImage
           className=" h-52 object-contain "
           src={imageAPi + imageCover.slice(9)}
@@ -34,13 +32,13 @@ const ProductGallery = ({ product ,isLoading}) => {
           
           style={{ cursor: "pointer" }}
         />
-         )
-       }
+         
+       
         </div>
         <div>
           <div className="grid grid-cols-4 gap-4 ">
             {
-              isLoading?(<div className="w-full col-span-4"><LoadingSpinner/></div>):(
+             
                 images.length>0?images.map((image, index) => {
                   return (
                     <div
@@ -65,7 +63,7 @@ const ProductGallery = ({ product ,isLoading}) => {
                     </div>
                   );
                 }):(null)
-              )
+              
             }
           </div>
         </div>

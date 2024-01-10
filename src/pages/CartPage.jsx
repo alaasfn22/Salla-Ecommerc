@@ -33,23 +33,21 @@ const CartPage = () => {
     <div className="container py-8">
       {customeContainer()}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ">
-        <div className="lg:col-span-2 h-fit  grid gap-8  border  shadow-md rounded-lg border-b p-2 py-4  dark:border-gray-500 bg-white dark:bg-gray-800  ">
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : cartProducts.length > 0 ? (
+        <div className="lg:col-span-2 h-fit  grid gap-8     ">
+          { cartProducts.length > 0 ? (
             cartProducts.map((product) => {
               return <CartCard key={product._id} product={product} />;
             })
           ) : (
-            <div className="flex justify-center items-center my-4">
-              <img
-                src={cartImg}
-                alt="logo"
-                loading="lazy"
-                width={300}
-                className="object-contain"
-              />
-            </div>
+           isLoading?(<LoadingSpinner/>):( <div className="flex justify-center py-28 items-center ">
+           <img
+             src={cartImg}
+             alt="logo"
+             loading="lazy"
+             width={300}
+             className="object-contain"
+           />
+         </div>)
           )}
       {
         cartProducts.length >0 && (
@@ -62,7 +60,7 @@ const CartPage = () => {
         )
       }
         </div>
-        <div className="p-2 py-4  border  shadow-md rounded-lg border-b   dark:border-gray-500 bg-white dark:bg-gray-800 ">
+        <div className="p-2 py-4 h-fit  border  shadow-md rounded-lg border-b   dark:border-gray-500 bg-white dark:bg-gray-800 ">
           <CartCheckout totalPrice={totalPrice} />
         </div>
       </div>

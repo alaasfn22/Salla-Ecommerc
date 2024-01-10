@@ -53,7 +53,7 @@ export const updateCartCount=createAsyncThunk(
     async(data,thunkAPI)=>{
         try{
             const res=await useUpdateData(`/api/v1/cart/${data.id}`, data)
-            console.log(data)
+
            return res  
         }catch(e){
             return thunkAPI.rejectWithValue(e.message)
