@@ -10,10 +10,10 @@ import CartLoggedHooks from "../Hooks/cartLoggedHooks";
 function NaveBar() {
   // eslint-disable-next-line no-unused-vars
   const  [cartNumbers, totalPrice, cartProducts,isLoading]=CartLoggedHooks()
-  const[num,setNum]=useState(cartNumbers)
-  useEffect(() => {
-    setNum(cartNumbers)
-  }, [cartNumbers]);
+  // const[num,setNum]=useState(cartNumbers)
+  // useEffect(() => {
+  //   setNum(cartNumbers)
+  // }, [cartNumbers]);
 
 
 
@@ -142,7 +142,7 @@ function NaveBar() {
             </svg>
             <span className="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white dark:bg-white dark:text-gray-700">
              {
-            num
+            cartNumbers
              }
             </span>
           </span>

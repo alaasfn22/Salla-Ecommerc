@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import RemoveSpecificCartHooks from "../../Hooks/RemoveSpecificCartHooks";
 import { useDispatch } from "react-redux";
 import { updateCartCount } from "../../redux/slice/CartSlice";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const CartCard = ({ product }) => {
   const [count, setCount] = useState(null);
- 
+
   useEffect(() => {
     product?.count ? setCount(product?.count) : setCount(1);
   }, [product?.count]);
@@ -16,17 +17,12 @@ const CartCard = ({ product }) => {
     const data = { id: product._id, count: e.target.value };
      setTimeout(()=>{
       dispatch(updateCartCount(data));
-     },1000)
-    
-  }  
+     },1000)   
+      }  
 
   const [handelDeletItem] = RemoveSpecificCartHooks(product);
   const dispatch = useDispatch();
-  const handelUpdatecount = async (e) => {
-    e.preventDefault();
-    const data = { id: product._id, count: count };
-    await dispatch(updateCartCount(data));
-  };
+
 
   return (
     // <div className="flex lg:h-40 flex-col flex-wrap sm:items-center sm:flex-row gap-4  py-4 px-2 border-b dark:border-gray-500 rounded-lg hover:bg-main-Color dark:hover:bg-gray-700 ">
@@ -92,23 +88,26 @@ const CartCard = ({ product }) => {
     //     </div>
     //   </div>
     // </div>
-    <div className="md:flex px-4 items-strech overflow-hidden py-8 md:py-10 lg:py-8 border  shadow-md rounded-lg bg-white dark:bg-gray-800  dark:border-gray-500 border-gray-50">
+    <div className="md:flex capitalize px-4 items-strech overflow-hidden py-8 md:py-10 lg:py-8 border  shadow-md rounded-lg bg-white dark:bg-gray-800  dark:border-gray-500 border-gray-50">
       <div className="md:w-4/12 2xl:w-1/4 w-full flex justify-center items-center  overflow-hidden">
-        <img
+        <LazyLoadImage
           src={
             "https://salaa-kxfx.onrender.com/products/" +
             product?.product?.imageCover
           }
           loading="lazy"
-          alt="Black Leather Bag"
+          alt={product?.product?.title}
+          title={product?.product?.title}
           className="h-40 w-full object-center  object-contain p-2  md:block hidden"
         />
-        <img
+        <LazyLoadImage
            src={
             "https://salaa-kxfx.onrender.com/products/" +
             product?.product?.imageCover
           }
           loading="lazy"
+          alt={product?.product?.title}
+          title={product?.product?.title}
           className="md:hidden w-full h-56 object-center p-2 object-contain"
         />
       </div>

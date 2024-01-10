@@ -60,7 +60,8 @@ export const updateCartCount=createAsyncThunk(
         }
     }
 )
-const initialState={cart:[],isLoading:false,error:null}
+
+const initialState={cart:[],cupon:[],isLoading:false,error:null}
 const cartSlice=createSlice({
     name:"cart",
     initialState,

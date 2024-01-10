@@ -4,14 +4,15 @@ import categoryReducer from '../redux/slice/CategorySlice.jsx'
 import brandReducer from '../redux/slice/BrandSlice.jsx'
 import authReducer from '../redux/slice/Authentication.jsx'
 import cartReducer from '../redux/slice/CartSlice.jsx'
-
+import cuponReducer from '../redux/slice/CuponSlice.jsx'
 const store = configureStore({
     reducer: {
         product: productReducer,
         category: categoryReducer,
         brand: brandReducer,
         auth:authReducer,
-        cart:cartReducer
+        cart:cartReducer,
+        cupon:cuponReducer
 
     }
 })

@@ -28,18 +28,18 @@ const CartPage = () => {
       }
     }
   }, [isLoading]);
-
   return (
     <div className="container py-8">
       {customeContainer()}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ">
         <div className="lg:col-span-2 h-fit  grid gap-8     ">
-          { cartProducts.length > 0 ? (
+          { cartProducts.length >=1 ? (
             cartProducts.map((product) => {
               return <CartCard key={product._id} product={product} />;
             })
           ) : (
-           isLoading?(<LoadingSpinner/>):( <div className="flex justify-center py-28 items-center ">
+           isLoading?(<LoadingSpinner/>):( <div className="flex justify-center flex-col gap-8 py-28 items-center ">
+              <h1 className="text-3xl font-bold text-gray-500">Cart Empty</h1>
            <img
              src={cartImg}
              alt="logo"
@@ -48,7 +48,9 @@ const CartPage = () => {
              className="object-contain"
            />
          </div>)
-          )}
+          )
+          }
+         
       {
         cartProducts.length >0 && (
           <button
