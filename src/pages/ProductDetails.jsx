@@ -12,6 +12,7 @@ const ProductLikeContainer = lazy(() =>
 const ProductDetails = () => {
  
   const { id } = useParams();
+  console.log(id)
   const [product, isLoading, category, brand, likeProduct] =
     ProductDetailsHooks(id);
 
