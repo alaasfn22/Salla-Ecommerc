@@ -10,9 +10,8 @@ const ProductLikeContainer = lazy(() =>
 );
 
 const ProductDetails = () => {
- 
-  const { id } = useParams();
-  console.log(id)
+  let [searchParams, setSearchParams] = useSearchParams();
+  const id=searchParams.get("productId")
   const [product, isLoading, category, brand, likeProduct] =
     ProductDetailsHooks(id);
 
@@ -27,7 +26,14 @@ const ProductDetails = () => {
     <div className="container py-8">
        
         <Suspense fallback={<LoadingSpinner />}> 
-        <ProductDetailsContainer product={product} category={category} brand={brand} isLoading={isLoading} />
+       {
+        product&&
+        isLoading?(
+          <LoadingSpinner />
+        ):(
+          <ProductDetailsContainer product={product} isLoading={isLoading} category={category} brand={brand} />
+        )
+       }
         </Suspense>
        
      {

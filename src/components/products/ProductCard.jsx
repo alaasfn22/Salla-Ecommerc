@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
               ${product.price}
             </span>
             <Link
-              to={`/productDetails/productId/${product.id}`}
+              to={`/productDetails?productId=${product.id}&name=${product.title}&price=${product.price}`}
               className="text-white bg-btn-color hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-btn-color dark:focus:ring-blue-800"
             >
               View 
