@@ -88,7 +88,7 @@ function App() {
           ),
         },
         {
-          path: "/productDetails/:id",
+          path: "/productDetails/productId/:id",
           element: (
             <Suspense fallback={<LoadingSpinner />}>
               <ProductDetails />
@@ -116,6 +116,7 @@ function App() {
     {
       path: "*",
       element: <p>There is nothing here: 404!</p>,
+      errorElement: <p>Something went wrong</p>,
     },
   ]);
   return (

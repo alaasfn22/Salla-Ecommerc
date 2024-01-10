@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { customeContainer } from "../../utils/Toast";
 import RemoveSpecificCartHooks from "../../Hooks/RemoveSpecificCartHooks";
 import { useDispatch } from "react-redux";
 import { updateCartCount } from "../../redux/slice/CartSlice";
@@ -123,9 +122,11 @@ const CartCard = ({ product }) => {
           type="number"
             value={count}
             onChange={handelSelecteValue}
-            className=" w-16  px-1 border border-gray-200  focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+            min={1}       
+           className=" w-16  px-1 border border-gray-200  focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
           >            
           </input>
+          
         </div>
         <p className="text-xs leading-3 text-gray-600 dark:text-white ">
           Category: {product?.product?.category?.name}
