@@ -54,7 +54,7 @@ const ProductByCategory = () => {
             })
           ) : (
             <p className="text-red-600 mx-auto font-bold my-10">
-              no product found
+              لا يوجد منتجات
             </p>
           )}
         </div>
