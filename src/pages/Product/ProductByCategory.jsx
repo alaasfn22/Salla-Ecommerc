@@ -37,16 +37,13 @@ const ProductByCategory = () => {
     const data = { limit: limit, id: id, page: page };
     dispatch(getAllProductByCategory(data));
   };
-  console.log(productByCategory?.data?.length)
-  console.log(error)
+  
   return (
     <div className="container text-center py-8 ">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        error?(
-          <p className="text-red-600 font-bold my-10">{error?.data?.message}</p>
-        ):(
+       
           <div className="grid grid-cols-18 py-4 gap-8   rounded-xl  dark:bg-gray-800 dark:border-gray-700  ">
           {productByCategory?.data?.length ? (
             productByCategory.data.map((product) => {
@@ -54,11 +51,11 @@ const ProductByCategory = () => {
             })
           ) : (
             <p className="text-red-600 mx-auto font-bold my-10">
-              لا يوجد منتجات
+             empty products
             </p>
           )}
         </div>
-        )
+        
       )}
 
      {
