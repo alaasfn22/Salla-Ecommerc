@@ -2,10 +2,12 @@
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { imageAPi } from "../../Api/imageAPI";
-const CatCard = ({ name, image }) => {
+import { Link } from "react-router-dom";
+const CatCard = ({ name, image ,id}) => {
  
   return (
     <>
+    <Link to={`/productByCategory?categoryId=${id}&name=${name}`}>
       <div
               className="flex my-4 flex-col justify-between overflow-hidden   items-center p-2 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
@@ -14,7 +16,7 @@ const CatCard = ({ name, image }) => {
           src={imageAPi + image.slice(9) }
           alt={name}
           title={name}
-                    loading="lazy"
+           loading="lazy"
         />
         <div className="flex flex-col justify-between  leading-normal">
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
@@ -22,6 +24,8 @@ const CatCard = ({ name, image }) => {
           </p>
         </div>
       </div>
+
+    </Link>
     </>
   );
 };

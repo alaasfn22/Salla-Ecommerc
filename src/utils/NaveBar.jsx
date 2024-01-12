@@ -4,22 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import { CustomeToast } from "./Toast";
 import SwitchBtn from "./switchBtn/SwitchBtn";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import CartLoggedHooks from "../Hooks/cartLoggedHooks";
 
 function NaveBar() {
   // eslint-disable-next-line no-unused-vars
-  const  [cartNumbers, totalPrice, cartProducts,isLoading]=CartLoggedHooks()
-  // const[num,setNum]=useState(cartNumbers)
-  // useEffect(() => {
-  //   setNum(cartNumbers)
-  // }, [cartNumbers]);
-
-
-
-
-   
-
+  const [cartNumbers, totalPrice, cartProducts, isLoading] = CartLoggedHooks();
   const links = [
     {
       name: "Home",
@@ -47,13 +37,12 @@ function NaveBar() {
 
   const handleNav = () => {
     setOpenNav(!openNav);
-    var collapseMenu = document.getElementById('collapseMenu');
-    if (collapseMenu.style.display === 'block') {
-      collapseMenu.style.display = 'none';
+    var collapseMenu = document.getElementById("collapseMenu");
+    if (collapseMenu.style.display === "block") {
+      collapseMenu.style.display = "none";
     } else {
-      collapseMenu.style.display = 'block';
+      collapseMenu.style.display = "block";
     }
-    
   };
 
   const handleMenu = () => {
@@ -76,77 +65,86 @@ function NaveBar() {
   return (
     <header className="shadow-md bg-white border-b dark:bg-gray-800 dark:border-gray-700 font-[sans-serif]">
       <section className="flex items-center lg:justify-center relative py-3 sm:px-10 px-4 border-gray-200 border-b min-h-[75px]">
-      <div className="left-10 absolute z-50 flex  rounded max-lg:hidden">
-        <form>
-  <label
-    htmlFor="default-search"
-    className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-  >
-    Search
-  </label>
-  <div className="relative">
-    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-      <svg
-        className="w-4 h-4 text-gray-500 dark:text-gray-400"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 20 20"
-      >
-        <path
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-        />
-      </svg>
-    </div>
-    <input
-      type="search"
-      id="default-search"
-      className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      placeholder="Search Mockups, Logos..."
-      required=""
-    />
-   
-  </div>
-</form>
+        <div className="left-10 absolute z-50 flex  rounded max-lg:hidden">
+          <form>
+            <label
+              htmlFor="default-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search Mockups, Logos..."
+                required=""
+              />
+            </div>
+          </form>
         </div>
-        <a href="javascript:void(0)">
+        {/* <a href="javascript:void(0)">
           <img
             src="https://readymadeui.com/readymadeui.svg"
             alt="logo"
             className="md:w-[170px] w-28"
           />
-        </a>
+        </a> */}
+        <Link to="/" className="flex items-center justify-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height={38}
+            width={38}
+            viewBox="0 0 576 512"
+            className="fill-[#007bff] "
+          >
+            <path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+          </svg>
+          <p className="mt-2 text-2xl font-semibold text-gray-700">Salla Store</p>
+        </Link>
         <div className="absolute sm:right-10 right-4 flex items-center">
           <span className="relative sm:mr-8 mr-2">
             <span className="flex justify-end items-end">
               <SwitchBtn />
             </span>
           </span>
-        <Link to="/cart">
-        <span className="relative sm:mr-8 mr-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20px"
-              height="20px"
-              className="cursor-pointer dark:fill-[#fff] dark:hover:fill-[#007bff] hover:fill-[#007bff] inline-block"
-              viewBox="0 0 512 512"
-            >
-              <path
-                d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
-                data-original="#000000"
-              />
-            </svg>
-            <span className="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white dark:bg-white dark:text-gray-700">
-             {
-            cartNumbers
-             }
+          <Link to="/cart">
+            <span className="relative sm:mr-8 mr-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                className="cursor-pointer dark:fill-[#fff] dark:hover:fill-[#007bff] hover:fill-[#007bff] inline-block"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
+                  data-original="#000000"
+                />
+              </svg>
+              <span className="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white dark:bg-white dark:text-gray-700">
+                {cartNumbers}
+              </span>
             </span>
-          </span>
-        </Link>
+          </Link>
 
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             {userName ? (

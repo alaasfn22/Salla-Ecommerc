@@ -16,12 +16,13 @@ const BrandPage = () => {
   }
   return (
     <div className="container py-8 ">
-            <div className="grid grid-cols-16 gap-4 p-4 bg-white border-2 rounded-xl   dark:bg-gray-800 dark:border-gray-700">
+            <div className="grid grid-cols-16 gap-4 py-4    dark:bg-gray-800 ">
           {brands.data ? (
             brands.data.map((brand) => {
               return (
                 <BrandCard
-                  key={brand.id}
+                  key={brand._id}
+                  id={brand._id}
                   name={brand.name}
                   image={brand.image}
                 />

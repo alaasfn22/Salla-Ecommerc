@@ -11,11 +11,16 @@ import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import RootLayout from "./pages/RootLayout";
 const HomePage = lazy(() => import("./pages/HomePage"));
-const ProductPage = lazy(() => import("./pages/ProductPage"));
+const ProductPage = lazy(() => import("./pages/Product/ProductPage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const BrandPage = lazy(() => import("./pages/BrandPage"));
-const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const ProductDetails = lazy(() => import("./pages/Product/ProductDetails"));
+const ProductByCategory = lazy(() =>
+  import("./pages/Product/ProductByCategory")
+);
+const ProductByBrand = lazy(() => import("./pages/Product/ProductByBrand"));
 const CartPage = lazy(() => import("./pages/CartPage"));
+const NotFoundPage = lazy(() => import("./utils/Not_Found_Page"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -59,9 +64,11 @@ function App() {
       children: [
         {
           index: true,
-          element: <Suspense fallback={<LoadingSpinner/>}>
-            <HomePage />
-          </Suspense>,
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <HomePage />
+            </Suspense>
+          ),
         },
         {
           path: "/products",
@@ -96,10 +103,26 @@ function App() {
           ),
         },
         {
+          path: "/productByCategory",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductByCategory />
+            </Suspense>
+          ),
+        },
+        {
           path: "/cart",
           element: (
             <Suspense fallback={<LoadingSpinner />}>
               <CartPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/product",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductByBrand />
             </Suspense>
           ),
         },
@@ -115,12 +138,20 @@ function App() {
     },
     {
       path: "*",
-      element: <p>There is nothing here: 404!</p>,
-      errorElement: <p>Something went wrong</p>,
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <NotFoundPage />
+        </Suspense>
+      ),
+      errorElement: (
+        <Suspense fallback={<LoadingSpinner />}>
+          <NotFoundPage />
+        </Suspense>
+      ),
     },
   ]);
   return (
-    <div className="bg-main-Color dark:bg-gray-800    dark:border-gray-700 min-h-screen    ">
+    <div className="bg-main-Color dark:bg-gray-800  dark:border-gray-700 min-h-screen    ">
       <RouterProvider router={router} />
     </div>
   );

@@ -11,14 +11,14 @@ const ProductContainer = ({ isLoading, allProducts }) => {
         pathname="/products"
         title="All Products"
       />
-      <div className="p-4 rounded-xl border-2 bg-white  dark:bg-gray-800 dark:border-gray-700">
+      <div className="py-4  dark:bg-gray-800 dark:border-gray-700">
               {isLoading ? (
           <LoadingSpinner />
         ) : (
           <div className="grid  grid-cols-18  gap-8  ">
             {allProducts ? (
               allProducts.map((product) => {
-                return <ProductCard key={product.id} product={product} />;
+                return <ProductCard key={product._id} product={product} />;
               })
             ) : (
               <p>no product found</p>

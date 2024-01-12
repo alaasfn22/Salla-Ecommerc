@@ -27,7 +27,7 @@ const HomePage = () => {
       <Suspense fallback={<LoadingSpinner />}>
         <Gallery />
       </Suspense>
-      <div className="my-8">
+      <div className="py-4">
         <Suspense fallback={<LoadingSpinner />}>
           <Categorycontainer catLoading={catLoading} category={allCategory} />
         </Suspense>

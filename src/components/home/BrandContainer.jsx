@@ -12,7 +12,7 @@ const BrandContainer = ({ brands, brandLoading }) => {
   return (
     <>
       <CustomeButton name="Brand" pathname="/brand" title="All Brands" />
-      <div className="p-4 rounded-xl border-2 bg-white  dark:bg-gray-800 dark:border-gray-700">
+      <div className="py-4  dark:bg-gray-800 dark:border-gray-700">
         <Swiper
           slidesPerView={1}
           spaceBetween={30}

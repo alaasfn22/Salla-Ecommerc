@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import ProductDetailsHooks from "../Hooks/ProductDetailsHooks";
+import ProductDetailsHooks from "../../Hooks/ProductDetailsHooks";
 import { useParams, useSearchParams } from "react-router-dom";
-import LoadingSpinner from "../helper/Spinner";
+import LoadingSpinner from "../../helper/Spinner";
 import { Suspense, lazy, useEffect } from "react";
-const ProductDetailsContainer=lazy(()=>import("../components/products/ProductDetailsContainer"))
+const ProductDetailsContainer=lazy(()=>import("../../components/products/ProductDetailsContainer"))
 
 const ProductLikeContainer = lazy(() =>
-  import("../components/products/productLikeContainer")
+  import("../../components/products/productLikeContainer")
 );
 
 const ProductDetails = () => {
