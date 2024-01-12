@@ -37,8 +37,7 @@ const ProductByCategory = () => {
     const data = { limit: limit, id: id, page: page };
     dispatch(getAllProductByCategory(data));
   };
-  console.log(productByCategory?.data?.length)
-  console.log(error)
+  
   return (
     <div className="container text-center py-8 ">
       {isLoading ? (
