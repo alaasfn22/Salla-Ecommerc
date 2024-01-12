@@ -50,10 +50,10 @@ const Categorycontainer = ({ catLoading, category }) => {
             <LoadingSpinner />
           ) : (
             category &&
-            category.map((cat,index) => {
+            category.map((cat) => {
               return (
-                <SwiperSlide key={index}>
-                  <CatCard  name={cat.name} image={cat.image} />
+                <SwiperSlide key={cat._id}>
+                  <CatCard id={cat._id}  name={cat.name} image={cat.image} />
                 </SwiperSlide>
               );
             })

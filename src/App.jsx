@@ -103,7 +103,7 @@ function App() {
           ),
         },
         {
-          path: "/productByCategory",
+          path: "/products/category",
           element: (
             <Suspense fallback={<LoadingSpinner />}>
               <ProductByCategory />
@@ -119,7 +119,7 @@ function App() {
           ),
         },
         {
-          path: "/product",
+          path: "/products/brand",
           element: (
             <Suspense fallback={<LoadingSpinner />}>
               <ProductByBrand />

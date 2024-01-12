@@ -30,8 +30,7 @@ let limit=8;
         console.log(e);
       }
     }, [productByBrand]);
-console.log(error)
-console.log(isLoading)
+
     const handelOnSelectPage = (page) => {
         const data={limit:limit,id:id,page:page}
         dispatch(getAllProductBrandId(data));

@@ -19,19 +19,19 @@ const ProductByCategory = () => {
   useEffect(() => {
     getProduct();
   }, []);
-  const { productByCategory, isLoading, error } = useSelector(
+  const { productByCat, isLoading, error } = useSelector(
     (state) => state.product
   );
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     try {
-      if (productByCategory?.paginationResult) {
-        setPageCount(productByCategory?.paginationResult?.numberOfPages);
+      if (productByCat?.paginationResult) {
+        setPageCount(productByCat?.paginationResult?.numberOfPages);
       }
     } catch (e) {
       console.log(e);
     }
-  }, [productByCategory]);
+  }, [productByCat]);
 
   const handelOnSelectPage = (page) => {
     const data = { limit: limit, id: id, page: page };
@@ -43,23 +43,21 @@ const ProductByCategory = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        error?(
-          <p className="text-red-600 font-bold my-10">{error?.data?.message}</p>
-        ):(
+        error ? <p className="text-red-600 mx-auto font-bold my-10">{error?.data?.message}</p>:
           <div className="grid grid-cols-18 py-4 gap-8   rounded-xl  dark:bg-gray-800 dark:border-gray-700  ">
-          {productByCategory?.data?.length ? (
-            productByCategory.data.map((product) => {
+          {productByCat?.data?.length ? (
+            productByCat.data.map((product) => {
               return <ProductCard key={product._id} product={product} />;
             })
           ) : (
             <p className="text-red-600 mx-auto font-bold my-10">
-              لا يوجد منتجات
+             empty products
             </p>
           )}
         </div>
-        )
+        
       )}
-
+     
      {
       pageCount>1&& <CustomePagination
       handelOnSelectPage={handelOnSelectPage}

@@ -74,7 +74,7 @@ const initialState = {
   specificProduct: [],
   likeProducts: [],
   productByBrand:[],
-  productByCategory:[],
+  productByCat:[],
   isLoading: false,
   error: null,
 };
@@ -155,7 +155,7 @@ const productSlice = createSlice({
       state.error = null;
     },
     [getAllProductByCategory.fulfilled]: (state, action) => {
-      state.productByCategory = action.payload;
+      state.productByCat = action.payload;
       state.isLoading = false;
     },
     [getAllProductByCategory.rejected]: (state, action) => {

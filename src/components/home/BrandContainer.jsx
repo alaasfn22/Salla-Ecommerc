@@ -44,10 +44,10 @@ const BrandContainer = ({ brands, brandLoading }) => {
             <LoadingSpinner />
           ) : (
             brands.data &&
-            brands.data.map((brand,index) => {
+            brands.data.map((brand) => {
               return (
-                <SwiperSlide key={index}>
-                  <BrandCard name={brand.name} image={brand.image} />
+                <SwiperSlide key={brand._id}>
+                  <BrandCard id={brand._id} name={brand.name} image={brand.image} />
                 </SwiperSlide>
               );
             })
