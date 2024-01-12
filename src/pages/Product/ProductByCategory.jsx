@@ -43,9 +43,7 @@ const ProductByCategory = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        error?(
-          <p className="text-red-600 font-bold my-10">{error?.data?.message}</p>
-        ):(
+       
           <div className="grid grid-cols-18 py-4 gap-8   rounded-xl  dark:bg-gray-800 dark:border-gray-700  ">
           {productByCategory?.data?.length ? (
             productByCategory.data.map((product) => {
@@ -53,11 +51,11 @@ const ProductByCategory = () => {
             })
           ) : (
             <p className="text-red-600 mx-auto font-bold my-10">
-              لا يوجد منتجات
+             empty products
             </p>
           )}
         </div>
-        )
+        
       )}
 
      {
