@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CustomeToast } from "../utils/Toast";
-import { registerUser } from "../redux/slice/Authentication";
+import { CustomeToast } from "../../utils/Toast";
+import { registerUser } from "../../redux/slice/Authentication";
 
 const RegisterHooks = () => {
     const dispatch=useDispatch()

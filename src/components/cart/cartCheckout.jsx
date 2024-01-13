@@ -1,46 +1,15 @@
 /* eslint-disable react/prop-types */
-
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CustomeToast, customeContainer } from "../../utils/Toast";
-import { applayCoupon } from "../../redux/slice/CuponSlice";
+import { customeContainer } from "../../utils/Toast";
+import CartApplayCoupon from "../../Hooks/Cart/CartApplayCoupon";
 
 const CartCheckout = ({ totalPrice }) => {
-  const [couponName, setCouponName] = useState("");
-  const [couponData, setCouponData] = useState("");
-  const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
-  const dispatch = useDispatch();
-  const handelChangeCuponValue = (e) => {
-    setCouponName(e.target.value);
-  };
-  const addCupone = async (e) => {
-    e.preventDefault();
-    if (couponName === "") {
-      CustomeToast("error", "Please Enter Coupon Name");
-      return;
-    }
-    await dispatch(applayCoupon({ couponName: couponName }));  
-  };
-  const { cupon, isLoading,error } = useSelector((state) => state.cupon);
-   
-  useEffect(() => {
-  if(isLoading===false){
-    if (cupon.data) {
-      CustomeToast("success", "   Coupon applied successfully");
-      setCouponData(cupon?.data?.coupon);
-      setTotalAfterDiscount(cupon?.data?.data?.totalAfterDiscount);
-      setCouponName("");
-    }else if(! cupon.data){
-   if(error?.data?.status==="fail") {
-      CustomeToast("error", 
-      error?.data?.message);
-      setTotalAfterDiscount("");
-      setCouponData("");
-    }
-    }
-  
-  }
-  },[isLoading])
+  const [
+    couponData,
+    totalAfterDiscount,
+    handelChangeCuponValue,
+    addCupone,
+    couponName,
+  ] = CartApplayCoupon();
   return (
     <div className="w-full overflow-hidden ">
       {customeContainer()}
@@ -84,18 +53,17 @@ const CartCheckout = ({ totalPrice }) => {
               Order Total
             </span>
             <span className="text-xl font-bold text-gray-700 dark:text-gray-400">
-            {
-              couponData?(
-              <div className="flex gap-4">
-              <span className="text-red-400">
-                  {" "}
-                  <s>${totalPrice}</s>
-                </span>
-                <span>${totalAfterDiscount}</span>
-                
+              {couponData ? (
+                <div className="flex gap-4">
+                  <span className="text-red-400">
+                    {" "}
+                    <s>${totalPrice}</s>
+                  </span>
+                  <span>${totalAfterDiscount}</span>
                 </div>
-              ):(totalPrice + 0)
-            }
+              ) : (
+                totalPrice + 0
+              )}
             </span>
           </div>
           <h2 className="text-lg text-gray-500 dark:text-gray-400">

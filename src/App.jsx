@@ -9,17 +9,21 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import PageLoading from "./helper/PageLoading";
 import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
-import RootLayout from "./pages/RootLayout";
-const HomePage = lazy(() => import("./pages/HomePage"));
-const ProductPage = lazy(() => import("./pages/Product/ProductPage"));
-const CategoryPage = lazy(() => import("./pages/CategoryPage"));
-const BrandPage = lazy(() => import("./pages/BrandPage"));
-const ProductDetails = lazy(() => import("./pages/Product/ProductDetails"));
-const ProductByCategory = lazy(() =>
-  import("./pages/Product/ProductByCategory")
+import RootLayout from "./pages/Public/RootLayout";
+const HomePage = lazy(() => import("./pages/Public/HomePage"));
+const ProductPage = lazy(() => import("./pages/Public/Product/ProductPage"));
+const CategoryPage = lazy(() => import("./pages/Public/Category/CategoryPage"));
+const BrandPage = lazy(() => import("./pages/Public/Brand/BrandPage"));
+const ProductDetails = lazy(() =>
+  import("./pages/Public/Product/ProductDetails")
 );
-const ProductByBrand = lazy(() => import("./pages/Product/ProductByBrand"));
-const CartPage = lazy(() => import("./pages/CartPage"));
+const ProductByCategory = lazy(() =>
+  import("./pages/Public/Product/ProductByCategory")
+);
+const ProductByBrand = lazy(() =>
+  import("./pages/Public/Product/ProductByBrand")
+);
+const CartPage = lazy(() => import("./pages/Public/Cart/CartPage"));
 const NotFoundPage = lazy(() => import("./utils/Not_Found_Page"));
 
 function App() {

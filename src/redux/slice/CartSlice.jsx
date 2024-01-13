@@ -11,7 +11,7 @@ export const addtoCart=createAsyncThunk(
             const res=await useInsertData(`/api/v1/cart`, data)
            return res  
         }catch(e){
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.response)
         }
     }
 )
@@ -22,7 +22,7 @@ export const getAllLoggedToCart=createAsyncThunk(
             const res=await useGetDataByToken(`/api/v1/cart`)
            return res  
         }catch(e){
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.response)
         }
     }
 )
@@ -33,7 +33,7 @@ export const rempveSpecificProduct=createAsyncThunk(
             const res=await useDeleteDataByToken(`/api/v1/cart/${id}`)
            return res  
         }catch(e){
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.response)
         }
     }
 )
@@ -44,7 +44,7 @@ export const removeAll=createAsyncThunk(
             const res=await useDeleteDataByToken(`/api/v1/cart`)
            return res  
         }catch(e){
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.response)
         }
     }
 )
@@ -56,7 +56,7 @@ export const updateCartCount=createAsyncThunk(
 
            return res  
         }catch(e){
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.response)
         }
     }
 )
@@ -83,7 +83,7 @@ const cartSlice=createSlice({
             state.error = null;
         },
         [getAllLoggedToCart.fulfilled]: (state, action) => {
-            state.cart = action.payload;
+            state.cart = action?.payload;
             state.isLoading = false;
         },
         [getAllLoggedToCart.rejected]: (state, action) => {
@@ -95,7 +95,7 @@ const cartSlice=createSlice({
             state.error = null;
         },
         [rempveSpecificProduct.fulfilled]: (state, action) => {
-            state.cart = action.payload;
+            state.cart = action?.payload;
             state.isLoading = false;
         },
         [rempveSpecificProduct.rejected]: (state, action) => {

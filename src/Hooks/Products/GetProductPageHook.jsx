@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProducts,
   getProductsPagination,
-} from "../redux/slice/ProductSlice";
+} from "../../redux/slice/ProductSlice";
 
 const GetProductPageHook = () => {
   const dispatch = useDispatch();

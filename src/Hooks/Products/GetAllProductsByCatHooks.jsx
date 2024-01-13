@@ -1,13 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "../../components/products/ProductCard";
-import LoadingSpinner from "../../helper/Spinner";
-import CustomePagination from "../../utils/Pagination";
 import { getAllProductByCategory } from "../../redux/slice/ProductSlice";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const ProductByCategory = () => {
+const GetAllProductsByCatHooks = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("categoryId");
   let limit = 8;
@@ -37,35 +35,7 @@ const ProductByCategory = () => {
     const data = { limit: limit, id: id, page: page };
     dispatch(getAllProductByCategory(data));
   };
-  
-  return (
-    <div className="container text-center py-8 ">
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        error ? <p className="text-red-600 mx-auto font-bold my-10">{error?.data?.message}</p>:
-          <div className="grid grid-cols-18 py-4 gap-8   rounded-xl  dark:bg-gray-800 dark:border-gray-700  ">
-          {productByCat?.data?.length ? (
-            productByCat.data.map((product) => {
-              return <ProductCard key={product._id} product={product} />;
-            })
-          ) : (
-            <p className="text-red-600 mx-auto font-bold my-10">
-             empty products
-            </p>
-          )}
-        </div>
-        
-      )}
-     
-     {
-      pageCount>1&& <CustomePagination
-      handelOnSelectPage={handelOnSelectPage}
-      pageCount={pageCount}
-    />
-     }
-    </div>
-  );
+  return [productByCat, pageCount, handelOnSelectPage, isLoading, error];
 };
 
-export default ProductByCategory;
+export default GetAllProductsByCatHooks;

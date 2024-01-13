@@ -6,8 +6,8 @@ const SideBar = () => {
     const [open, setOpen] = useState(false)
     const location = useLocation()
     const token = localStorage.getItem("token")
+    const user=JSON.parse(  localStorage.getItem("userData"))
   
-
     return (
 
         <>
@@ -131,7 +131,7 @@ const SideBar = () => {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
                     {
-                        token ? (<Outlet></Outlet>) : (<Navigate state={{ from: location }} replace to="/login" />)
+                        token && user.role==="admin"? (<Outlet></Outlet>) : (<Navigate state={{ from: location }} replace to="/login" />)
                     }
 
                 </div>

@@ -5,7 +5,7 @@ import "./nav.css";
 import { CustomeToast } from "./Toast";
 import SwitchBtn from "./switchBtn/SwitchBtn";
 import {  useState } from "react";
-import CartLoggedHooks from "../Hooks/cartLoggedHooks";
+import CartLoggedHooks from "../Hooks/Cart/cartLoggedHooks";
 
 function NaveBar() {
   // eslint-disable-next-line no-unused-vars

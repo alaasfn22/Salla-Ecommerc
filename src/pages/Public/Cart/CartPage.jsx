@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import CartLoggedHooks from "../Hooks/cartLoggedHooks";
-import CartCard from "../components/cart/CartCard";
-import LoadingSpinner from "../helper/Spinner";
-import cartImg from "../assets/Cart-PNG-Clipart.png";
-import CartCheckout from "../components/cart/cartCheckout";
-import RemoveCartHooks from "../Hooks/RemoveSpecificCartHooks";
+
 import { useDispatch, useSelector } from "react-redux";
-import { removeAll } from "../redux/slice/CartSlice";
+import CartLoggedHooks from "../../../Hooks/Cart/cartLoggedHooks";
+import { removeAll } from "../../../redux/slice/CartSlice";
 import { useEffect } from "react";
-import { CustomeToast, customeContainer } from "../utils/Toast";
+import { CustomeToast, customeContainer } from "../../../utils/Toast";
+import LoadingSpinner from "../../../helper/Spinner";
+import CartCard from "../../../components/cart/CartCard";
+import CartCheckout from "../../../components/cart/cartCheckout";
+import cartImg from "../../../assets/Cart-PNG-Clipart.png";
 
 const CartPage = () => {
   const [cartNumbers, totalPrice, cartProducts, isLoading] = CartLoggedHooks();
@@ -33,34 +33,33 @@ const CartPage = () => {
       {customeContainer()}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ">
         <div className="lg:col-span-2 h-fit  grid gap-8     ">
-          { cartProducts.length >=1 ? (
+          {cartProducts.length >= 1 ? (
             cartProducts.map((product) => {
               return <CartCard key={product._id} product={product} />;
             })
+          ) : isLoading ? (
+            <LoadingSpinner />
           ) : (
-           isLoading?(<LoadingSpinner/>):( <div className="flex justify-center flex-col gap-8 py-28 items-center ">
+            <div className="flex justify-center flex-col gap-8 py-28 items-center ">
               <h1 className="text-3xl font-bold text-gray-500">Cart Empty</h1>
-           <img
-             src={cartImg}
-             alt="logo"
-             loading="lazy"
-             width={300}
-             className="object-contain"
-           />
-         </div>)
-          )
-          }
-         
-      {
-        cartProducts.length >0 && (
-          <button
-          onClick={hanelRmoveAll}
-          className="bg-sky-500 w-40 rounded-lg p-2 text-white  hover:bg-sky-700 ..."
-        >
-          Remove All
-        </button>
-        )
-      }
+              <img
+                src={cartImg}
+                alt="logo"
+                loading="lazy"
+                width={300}
+                className="object-contain"
+              />
+            </div>
+          )}
+
+          {cartProducts.length > 0 && (
+            <button
+              onClick={hanelRmoveAll}
+              className="bg-sky-500 w-40 rounded-lg p-2 text-white  hover:bg-sky-700 ..."
+            >
+              Remove All
+            </button>
+          )}
         </div>
         <div className="p-2 py-4 h-fit  border  shadow-md rounded-lg border-b   dark:border-gray-500 bg-white dark:bg-gray-800 ">
           <CartCheckout totalPrice={totalPrice} />

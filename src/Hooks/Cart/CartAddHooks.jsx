@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart } from "../redux/slice/CartSlice";
-import { CustomeToast } from "../utils/Toast";
+import { addtoCart } from "../../redux/slice/CartSlice";
+import { CustomeToast } from "../../utils/Toast";
 import { useEffect, useState } from "react";
 
 const CartAddHooks = (product) => {
@@ -19,8 +19,6 @@ const CartAddHooks = (product) => {
       if (color === "") {
         CustomeToast("error", "please select color");
         return;
-      } else {
-        setColor("");
       }
     }
     const data = { productId: product._id, color: color };
@@ -35,11 +33,17 @@ const CartAddHooks = (product) => {
         if (cart?.data?.status === "success") {
           CustomeToast("success", cart?.data?.message);
         }
-      } else if (error === "Request failed with status code 500") {
+      } else {
+        setColor("");
+        setColorCheck("");
+      }
+
+      if (error?.data?.status === "error") {
         CustomeToast("error", "Please log in first");
       }
     }
   }, [isLoading]);
+
   return [addToCart, handelSelectColor, colorCheck];
 };
 

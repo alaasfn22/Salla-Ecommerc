@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
   getCategoryPagination,
-} from "../redux/slice/CategorySlice";
+} from "../../redux/slice/CategorySlice";
 
 const GetCategoryHooks = () => {
   const dispatch = useDispatch();

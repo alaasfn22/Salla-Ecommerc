@@ -30,7 +30,7 @@ export const getProductById = createAsyncThunk(
       const res = await useGetData(`/api/v1/products/${id}`);
       return res;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response);
     }
   }
 );
@@ -45,36 +45,40 @@ export const getProductByCategory = createAsyncThunk(
     }
   }
 );
-export const getAllProductBrandId=createAsyncThunk(
-    "products/getAllProductBrandId",
-    async(data,thunkAPI)=>{
-        try{
-            const res=await useGetData(`/api/v1/products?limit=${data.limit}&page=${data.page}&brand=${data.id}`)
-            console.log(data)
-           return res
-        }catch(e){
-            return thunkAPI.rejectWithValue(e.response)
-        }
+export const getAllProductBrandId = createAsyncThunk(
+  "products/getAllProductBrandId",
+  async (data, thunkAPI) => {
+    try {
+      const res = await useGetData(
+        `/api/v1/products?limit=${data.limit}&page=${data.page}&brand=${data.id}`
+      );
+      console.log(data);
+      return res;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.response);
     }
-)
-export const getAllProductByCategory=createAsyncThunk(
-    "products/getAllProductByCategory",
-    async(data,thunkAPI)=>{
-        try{
-            const res=await useGetData(`/api/v1/products?limit=${data.limit}&page=${data.page}&category=${data.id}`)
-           return res
-        }catch(e){
-            return thunkAPI.rejectWithValue(e.response)
-        }
+  }
+);
+export const getAllProductByCategory = createAsyncThunk(
+  "products/getAllProductByCategory",
+  async (data, thunkAPI) => {
+    try {
+      const res = await useGetData(
+        `/api/v1/products?limit=${data.limit}&page=${data.page}&category=${data.id}`
+      );
+      return res;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.response);
     }
-)
+  }
+);
 
 const initialState = {
   products: [],
   specificProduct: [],
   likeProducts: [],
-  productByBrand:[],
-  productByCat:[],
+  productByBrand: [],
+  productByCat: [],
   isLoading: false,
   error: null,
 };
@@ -122,7 +126,6 @@ const productSlice = createSlice({
     },
     [getProductById.rejected]: (state, action) => {
       state.error = action?.payload;
-      // state.error = action?.error.message // when need to print result of message
       state.isLoading = false;
     },
     [getProductByCategory.pending]: (state) => {
@@ -161,8 +164,7 @@ const productSlice = createSlice({
     [getAllProductByCategory.rejected]: (state, action) => {
       state.error = action?.payload;
       state.isLoading = false;
-    }
-
+    },
   },
 });
 

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getBrnads, getBrnadsPagination } from "../redux/slice/BrandSlice";
+import { getBrnads, getBrnadsPagination } from "../../redux/slice/BrandSlice";
 import { useEffect, useState } from "react";
 
 const GetBrnadHooks = () => {

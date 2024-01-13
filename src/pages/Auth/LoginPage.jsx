@@ -2,7 +2,7 @@ import { Link,  } from "react-router-dom";
 
 import { Spinner } from "flowbite-react";
 import { customeContainer } from "../../utils/Toast";
-import LoginHooks from "../../Hooks/LoginHooks";
+import LoginHooks from "../../Hooks/Auth/LoginHooks";
 
 
 

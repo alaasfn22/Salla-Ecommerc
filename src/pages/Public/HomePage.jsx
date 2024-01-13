@@ -1,14 +1,14 @@
 import { Suspense, lazy } from "react";
-import HomeHooks from "../Hooks/HomeHooks";
-import LoadingSpinner from "../helper/Spinner";
+import HomeHooks from "../../Hooks/Home/HomeHooks";
+import LoadingSpinner from "../../helper/Spinner";
 const Categorycontainer = lazy(() =>
-  import("../components/home/Categorycontainer")
+  import("../../components/home/Categorycontainer")
 );
-const BrandContainer = lazy(() => import("../components/home/BrandContainer"));
+const BrandContainer = lazy(() => import("../../components/home/BrandContainer"));
 const ProductContainer = lazy(() =>
-  import("../components/home/ProductContainer")
+  import("../../components/home/ProductContainer")
 );
-const Gallery = lazy(() => import("../components/home/Gallery"));
+const Gallery = lazy(() => import("../../components/home/Gallery"));
 
 const HomePage = () => {
   const [

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import ProductCard from "../../components/products/ProductCard";
-import LoadingSpinner from "../../helper/Spinner";
-import CustomePagination from "../../utils/Pagination";
-import GetProductPageHook from "../../Hooks/GetProductPageHook";
+import ProductCard from "../../../components/products/ProductCard";
+import LoadingSpinner from "../../../helper/Spinner";
+import CustomePagination from "../../../utils/Pagination";
+import GetProductPageHook from "../../../Hooks/Products/GetProductPageHook";
 
 const ProductPage = () => {
   const [allProducts, pageCount, handelOnSelectPage, isLoading, error] =

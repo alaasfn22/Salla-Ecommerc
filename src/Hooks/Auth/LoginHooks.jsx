@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { CustomeToast } from "../utils/Toast";
+import { CustomeToast } from "../../utils/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../redux/slice/Authentication";
+import { loginUser } from "../../redux/slice/Authentication";
 
 const LoginHooks = () => {
     const [email, setEmail] = useState("");

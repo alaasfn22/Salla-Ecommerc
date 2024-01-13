@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../redux/slice/ProductSlice";
-import { getCategories } from "../redux/slice/CategorySlice";
-import { getBrnads } from "../redux/slice/BrandSlice";
+import { getProducts } from "../../redux/slice/ProductSlice";
+import { getCategories } from "../../redux/slice/CategorySlice";
+import { getBrnads } from "../../redux/slice/BrandSlice";
 
 const HomeHooks = () => {
   const dispatch = useDispatch();

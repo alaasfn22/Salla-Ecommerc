@@ -1,5 +1,5 @@
 import {  customeContainer } from "../../utils/Toast";
-import RegisterHooks from "../../Hooks/RegisterHooks";
+import RegisterHooks from "../../Hooks/Auth/RegisterHooks";
 import { Spinner } from "flowbite-react";
 
 

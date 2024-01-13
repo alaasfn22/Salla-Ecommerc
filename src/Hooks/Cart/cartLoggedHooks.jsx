@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllLoggedToCart } from "../redux/slice/CartSlice";
+import { getAllLoggedToCart } from "../../redux/slice/CartSlice";
 
 const CartLoggedHooks = () => {
   const dispatch = useDispatch();

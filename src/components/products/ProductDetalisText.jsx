@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import LoadingSpinner from "../../helper/Spinner";
-import CartAddHooks from "../../Hooks/CartAddHooks";
+import CartAddHooks from "../../Hooks/Cart/CartAddHooks";
 import { customeContainer } from "../../utils/Toast";
 
 const ProductDetalisText = ({ product, brand, category }) => {
