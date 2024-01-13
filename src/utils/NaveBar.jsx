@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import { CustomeToast } from "./Toast";
 import SwitchBtn from "./switchBtn/SwitchBtn";
-import {  useState } from "react";
+import { useState } from "react";
 import CartLoggedHooks from "../Hooks/Cart/cartLoggedHooks";
 
 function NaveBar() {
@@ -101,13 +101,7 @@ function NaveBar() {
             </div>
           </form>
         </div>
-        {/* <a href="javascript:void(0)">
-          <img
-            src="https://readymadeui.com/readymadeui.svg"
-            alt="logo"
-            className="md:w-[170px] w-28"
-          />
-        </a> */}
+
         <Link to="/" className="flex items-center justify-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +112,9 @@ function NaveBar() {
           >
             <path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
           </svg>
-          <p className="mt-2 text-2xl font-semibold text-gray-700">Salla Store</p>
+          <p className="mt-2 text-2xl font-semibold text-gray-700">
+            Salla Store
+          </p>
         </Link>
         <div className="absolute sm:right-10 right-4 flex items-center">
           <span className="relative sm:mr-8 mr-2">
@@ -145,20 +141,33 @@ function NaveBar() {
               </span>
             </span>
           </Link>
-
-          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          {/* start dropdown menu */}
+          <div className="relative font-[sans-serif] w-max mx-auto">
             {userName ? (
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                onClick={handleMenu}
+                onClick={() => setOpenMenu(!openMenu)}
+                className=" py-2 flex items-center   text-sm font-semibold  outline-none "
               >
-                <span className="sr-only">Open user menu</span>
                 <img
-                  className="w-8 h-8 rounded-full"
-                  src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                  alt="user photo"
+                  src="https://readymadeui.com/profile_6.webp"
+                  className="w-7 h-7 mr-2 rounded-full shrink-0"
                 />
+               <span className="hidden sm:block  text-[#333] dark:text-white">
+               {userName}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-3 fill-[#333] inline ml-2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
+                    clipRule="evenodd"
+                    data-original="#000000"
+                  />
+                </svg>
+               </span>
               </button>
             ) : (
               <Link to="/login">
@@ -179,52 +188,68 @@ function NaveBar() {
                 </div>
               </Link>
             )}
-            {/* Dropdown menu */}
-            <div
-              className={
-                openMenu
-                  ? "absolute top-16 right-[20px] z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                  : "hidden"
-              }
-            >
-              <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">
-                  {userName}
-                </span>
-                <span
-                  onClick={handleMenu}
-                  className="block text-sm  text-gray-500 truncate dark:text-gray-400"
-                >
-                  {userEmail}
-                </span>
-              </div>
-              <ul className="py-2">
-                {auth?.role === "admin" && (
-                  <li>
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-                )}
-
-                <li>
-                  <Link
-                    href="/"
-                    onClick={logOut}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            {openMenu && (
+              <ul className="absolute right-0 mt-4 shadow-lg bg-white text-[#333] dark:text-white dark:bg-gray-700 py-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto">
+                <li className="py-2.5 px-6 flex items-center hover:bg-gray-400  text-sm cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    className="w-[18px] h-[18px] mr-3"
+                    viewBox="0 0 512 512"
                   >
-                    Sign out
-                  </Link>
+                    <path
+                      d="M337.711 241.3a16 16 0 0 0-11.461 3.988c-18.739 16.561-43.688 25.682-70.25 25.682s-51.511-9.121-70.25-25.683a16.007 16.007 0 0 0-11.461-3.988c-78.926 4.274-140.752 63.672-140.752 135.224v107.152C33.537 499.293 46.9 512 63.332 512h385.336c16.429 0 29.8-12.707 29.8-28.325V376.523c-.005-71.552-61.831-130.95-140.757-135.223zM446.463 480H65.537V376.523c0-52.739 45.359-96.888 104.351-102.8C193.75 292.63 224.055 302.97 256 302.97s62.25-10.34 86.112-29.245c58.992 5.91 104.351 50.059 104.351 102.8zM256 234.375a117.188 117.188 0 1 0-117.188-117.187A117.32 117.32 0 0 0 256 234.375zM256 32a85.188 85.188 0 1 1-85.188 85.188A85.284 85.284 0 0 1 256 32z"
+                      data-original="#000000"
+                    />
+                  </svg>
+                  View profile
                 </li>
+                {auth.role === "admin" && (
+                 <Link to="/dashboard">
+                   <li className="py-2.5 px-6 flex items-center hover:bg-gray-400  text-sm cursor-pointer">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      className="w-[18px] h-[18px] mr-3"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M197.332 170.668h-160C16.746 170.668 0 153.922 0 133.332v-96C0 16.746 16.746 0 37.332 0h160c20.59 0 37.336 16.746 37.336 37.332v96c0 20.59-16.746 37.336-37.336 37.336zM37.332 32A5.336 5.336 0 0 0 32 37.332v96a5.337 5.337 0 0 0 5.332 5.336h160a5.338 5.338 0 0 0 5.336-5.336v-96A5.337 5.337 0 0 0 197.332 32zm160 480h-160C16.746 512 0 495.254 0 474.668v-224c0-20.59 16.746-37.336 37.332-37.336h160c20.59 0 37.336 16.746 37.336 37.336v224c0 20.586-16.746 37.332-37.336 37.332zm-160-266.668A5.337 5.337 0 0 0 32 250.668v224A5.336 5.336 0 0 0 37.332 480h160a5.337 5.337 0 0 0 5.336-5.332v-224a5.338 5.338 0 0 0-5.336-5.336zM474.668 512h-160c-20.59 0-37.336-16.746-37.336-37.332v-96c0-20.59 16.746-37.336 37.336-37.336h160c20.586 0 37.332 16.746 37.332 37.336v96C512 495.254 495.254 512 474.668 512zm-160-138.668a5.338 5.338 0 0 0-5.336 5.336v96a5.337 5.337 0 0 0 5.336 5.332h160a5.336 5.336 0 0 0 5.332-5.332v-96a5.337 5.337 0 0 0-5.332-5.336zm160-74.664h-160c-20.59 0-37.336-16.746-37.336-37.336v-224C277.332 16.746 294.078 0 314.668 0h160C495.254 0 512 16.746 512 37.332v224c0 20.59-16.746 37.336-37.332 37.336zM314.668 32a5.337 5.337 0 0 0-5.336 5.332v224a5.338 5.338 0 0 0 5.336 5.336h160a5.337 5.337 0 0 0 5.332-5.336v-224A5.336 5.336 0 0 0 474.668 32zm0 0"
+                        data-original="#000000"
+                      />
+                    </svg>
+                    Dashboard
+                  </li>
+                 </Link>
+                )}
+               <a href="/">
+               <li
+                  onClick={logOut}
+                  className="py-2.5 px-6 flex items-center hover:bg-gray-400  text-sm cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    className="w-[18px] h-[18px] mr-3"
+                    viewBox="0 0 6.35 6.35"
+                  >
+                    <path
+                      d="M3.172.53a.265.266 0 0 0-.262.268v2.127a.265.266 0 0 0 .53 0V.798A.265.266 0 0 0 3.172.53zm1.544.532a.265.266 0 0 0-.026 0 .265.266 0 0 0-.147.47c.459.391.749.973.749 1.626 0 1.18-.944 2.131-2.116 2.131A2.12 2.12 0 0 1 1.06 3.16c0-.65.286-1.228.74-1.62a.265.266 0 1 0-.344-.404A2.667 2.667 0 0 0 .53 3.158a2.66 2.66 0 0 0 2.647 2.663 2.657 2.657 0 0 0 2.645-2.663c0-.812-.363-1.542-.936-2.03a.265.266 0 0 0-.17-.066z"
+                      data-original="#000000"
+                    />
+                  </svg>
+                  Logout
+                </li>
+               </a>
               </ul>
-            </div>
+            )}
           </div>
+          {/* end dropdown menu */}
         </div>
       </section>
-      <div className="flex flex-wrap justify-center px-10 py-3 relative">
+
+    {/* start navbar */}
+    <div className="flex flex-wrap justify-center px-10 py-3 relative">
         <div
           id="toggle"
           className="flex ml-auto lg:order-1 lg:hidden relative z-40"
@@ -261,140 +286,10 @@ function NaveBar() {
           })}
         </ul>
       </div>
+    {/* end navbar */}
     </header>
 
-    //     <nav className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 sticky top-0 z-10 w-full">
-    //       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    //         <Link
-    //           to="/"
-    //           className="flex items-center space-x-3 rtl:space-x-reverse"
-    //         >
-    //           <img
-    //             src="https://flowbite.com/docs/images/logo.svg"
-    //             className="h-8"
-    //             alt="Flowbite Logo"
-    //           />
-    //           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-    //             Flowbite
-    //           </span>
-    //         </Link>
-    //         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
-    //          {
-    //           userName ? (
-    //             <button
-    //             type="button"
-    //             className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-    //             onClick={handleMenu}
-
-    //           >
-    //             <span className="sr-only">Open user menu</span>
-    //             <img
-    //               className="w-8 h-8 rounded-full"
-    //               src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-    //               alt="user photo"
-    //             />
-    //           </button>
-    //           ):(
-    //  <Link to="/login">
-    //             <button className=" hover:bg-blue-700 dark:text-white hover:text-white delay-75 ease-in-ou- transition-all font-semibold p-2 rounded-lg">
-    //   sign in
-    // </button></Link>
-    //           )
-    //          }
-    //           {/* Dropdown menu */}
-    //           <div
-    //             className={
-    //               openMenu
-    //                 ? "absolute top-16 right-[20px] z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-    //                 : "hidden"
-    //             }
-    //             >
-    //             <div className="px-4 py-3">
-    //               <span className="block text-sm text-gray-900 dark:text-white">
-    //                 {userName}
-    //               </span>
-    //               <span onClick={handleMenu} className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-    //                 {userEmail}
-    //               </span>
-    //             </div>
-    //             <ul className="py-2" >
-    //              {
-    //               auth?.role === "admin" && (
-    //                 <li>
-    //                 <Link
-    //                   to="/dashboard"
-
-    //                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-    //                 >
-    //                   Dashboard
-    //                 </Link>
-    //               </li>
-    //               )
-    //              }
-
-    //               <li>
-    //                 <Link
-    //                   href="/"
-    //                   onClick={logOut}
-    //                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-    //                 >
-    //                   Sign out
-    //                 </Link>
-    //               </li>
-    //             </ul>
-    //           </div>
-    //           <button
-    //             type="button"
-    //             onClick={handleNav}
-    //             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-    //           >
-
-    //             <span className="sr-only">Open main menu</span>
-    //             <svg
-    //               className="w-5 h-5"
-    //               aria-hidden="true"
-    //               xmlns="http://www.w3.org/2000/svg"
-    //               fill="none"
-    //               viewBox="0 0 17 14"
-    //             >
-    //               <path
-    //                 stroke="currentColor"
-    //                 strokeLinecap="round"
-    //                 strokeLinejoin="round"
-    //                 strokeWidth={2}
-    //                 d="M1 1h15M1 7h15M1 13h15"
-    //               />
-    //             </svg>
-    //           </button>
-    //         </div>
-    //         <div
-    //           className={
-    //             openNav
-    //               ? "items-center justify-between w-full md:flex md:w-auto md:order-1"
-    //               : "hidden items-center justify-between w-full md:flex md:w-auto md:order-1"
-    //           }
-    //           // className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-    //         >
-    //           <ul className="flex flex-col gap-2 font-medium p-4 md:p-0 mt-4 border dark:bg-gray-800 dark:border-gray-700 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:items-center  ">
-    //             {links.map((link, index) => {
-    //               return (
-    //                 <li key={index} className="p-2">
-    //                   <NavLink
-    //                     to={link.path}
-    //                     onClick={()=>{setOpenNav(false)}}
-    //                     className="block py-2 px-3  border-b-2 md:border-none capitalize  rounded-xl md:bg-transparent md:p-0 dark:text-white dark:border-gray-700 hover:text-blue-400     "
-    //                   >
-    //                     {link.name}
-    //                   </NavLink>
-    //                 </li>
-    //               );
-    //             })}
-    //           <span className="flex justify-end items-end"><SwitchBtn/></span>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </nav>
+ 
   );
 }
 export default NaveBar;
