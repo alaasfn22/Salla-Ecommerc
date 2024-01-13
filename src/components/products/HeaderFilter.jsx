@@ -2,7 +2,7 @@
 
 const HeaderFilter = ({selecteGrid,removeGrid}) => {
   return (
-    <div className="px-3 mb-4">
+    <div className=" mb-4">
     <div className="items-center justify-between  px-3 py-2 bg-white md:flex border border-gray-200 dark:border-gray-900 dark:bg-gray-800 dark:shadow-md rounded-md">
       <div className=" hidden md:flex justify-start">
       
