@@ -36,6 +36,10 @@ function App() {
   if (loading) {
     return <PageLoading />;
   }
+  console.log(window.navigator.onLine)
+  if(window.navigator.onLine===false){
+    return <NotFoundPage />
+  }
   const router = createBrowserRouter([
     {
       path: "/dashboard",

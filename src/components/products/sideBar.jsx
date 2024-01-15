@@ -4,7 +4,7 @@ import { getCategories } from "../../redux/slice/CategorySlice";
 import { getBrnads } from "../../redux/slice/BrandSlice";
 
 /* eslint-disable react/prop-types */
-const SideBar = ({ showFilter, handelShowFilter }) => {
+const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
   const [catlimit, setCatLimit] = useState(4);
   const dispatch = useDispatch();
   const { category } = useSelector((state) => state.category);
@@ -37,7 +37,56 @@ const SideBar = ({ showFilter, handelShowFilter }) => {
 
   const onClickViewMoreBrand = () => {
     setBrandLimit(brandLimit + 4);
-  }
+  };
+  const [catSelected, setCatSelected] = useState([]);
+  const handelCatSelecte = (e) => {
+    const id = e.target.id;
+    if (e.target.checked === true) {
+      if (id === "0") {
+        setCatSelected([]);
+      }else if(id !=="0"){
+        setCatSelected([...catSelected, id]);
+      }
+    }else{
+      setCatSelected(catSelected.filter((item) => item !== id));
+    }
+  };
+  let queryCat="";
+   
+  useEffect(() => {
+    queryCat=catSelected.map((value)=>"category[in][]="+value  ).join("&")
+    window.sessionStorage.setItem("catSelected",queryCat)
+    setTimeout(() => {
+      getFilters()
+    }, 1000);
+
+  }, [catSelected]);
+
+  const [brandSelected, setBrandSelected] = useState([]);
+  const handelBrandSelecte = (e) => {
+    const id = e.target.id;
+    if (e.target.checked === true) {
+      if (id === "00") {
+        setBrandSelected([]);
+      }else if(id !=="00"){
+        setBrandSelected([...brandSelected, id]);
+      }
+    }else{
+      setBrandSelected(brandSelected.filter((item) => item !== id));
+    }
+  };
+  let queryBrand="";
+   
+  useEffect(() => {
+    queryBrand=brandSelected.map((value)=>"brand[in][]="+value  ).join("&")
+    window.sessionStorage.setItem("brandSelected",queryBrand)
+    setTimeout(()=>
+    {
+      getFilters()
+    },1000)
+
+  }, [brandSelected]);
+
   return (
     <div
       className={`w-64 absolute   z-50 transition-transform delay-200 ease-in-out  md:translate-x-0   md:w-1/4 md:relative md:block ${
@@ -62,68 +111,115 @@ const SideBar = ({ showFilter, handelShowFilter }) => {
           </span>
         </div>
         <h2 className="text-2xl font-bold dark:text-gray-400"> Categories</h2>
-        <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-        <ul>
-          {allcategory.length >= 1 &&
-            allcategory.map((cat) => {
-              return (
-                <>
-                  <li className="mb-4" key={cat._id}>
-                    <label
-                      htmlFor={cat._id}
-                      className="flex items-center cursor-pointer dark:text-gray-400 "
-                    >
-                      <input
-                        name={cat.name}
-                        id={cat._id}
-                        type="checkbox"
-                        className="w-4 h-4 mr-2"
-                      />
-                      <span className="text-lg">{cat.name}</span>
-                    </label>
-                  </li>
-                </>
-              );
-            })}
-        </ul>
-        <span
-          onClick={onClickViewMoreCat}
-          className={`text-base font-medium cursor-pointer text-blue-500  dark:text-blue-400 ${
-            allcategory.length + 1 <= catlimit ? "hidden" : "block"
-          }`}
-        >
-          View More
-        </span>
+        <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400 " />
+        <div className="overflow-y-auto h-64   ">
+          <ul>
+            <li className="mb-4 px-1">
+              <label
+                htmlFor="0"
+                className="flex items-center cursor-pointer dark:text-gray-400 "
+              >
+                <input
+                  name="all"
+                  id="0"
+                  onChange={handelCatSelecte}
+                  type="checkbox"
+                  className="w-4 h-4 mr-2"
+                />
+                <span className="text-lg">All</span>
+              </label>
+            </li>
+            {allcategory.length >= 1 &&
+              allcategory.map((cat) => {
+                return (
+                  <>
+                    <li className="mb-4 px-1" key={cat._id}>
+                      <label
+                        htmlFor={cat._id}
+                        className="flex items-center cursor-pointer dark:text-gray-400 "
+                      >
+                        <input
+                          name={cat.name}
+                          id={cat._id}
+                          onChange={handelCatSelecte}
+                          type="checkbox"
+                          checked={catSelected.includes(cat._id) ? true : false}
+                          className="w-4 h-4 mr-2"
+                        />
+                        <span className="text-lg">{cat.name}</span>
+                      </label>
+                    </li>
+                  </>
+                );
+              })}
+          </ul>
+          <span
+            onClick={onClickViewMoreCat}
+            className={`text-base font-medium cursor-pointer text-blue-500  dark:text-blue-400 ${
+              allcategory.length + 1 <= catlimit ? "hidden" : "block"
+            }`}
+          >
+            View More
+          </span>
+        </div>
       </div>
 
       <div className="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-900 dark:shadow-md rounded-md">
         <h2 className="text-2xl font-bold dark:text-gray-400">Brand</h2>
-        <div className="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400" />
-        <ul>
-          {
-            allBrands.length >= 1 &&
-            allBrands.map((brand) => {
-              return (
-                <> <li key={brand._id} className="mb-4">
-                <label htmlFor={brand._id} className="flex items-center dark:text-gray-300">
-                  <input id={brand._id} name={brand.name} type="checkbox" className="w-4 h-4 mr-2" />
-                  <span className="text-lg dark:text-gray-400">{brand.name}</span>
-                </label>
-              </li></>
-              )
-            })
-          }
-                 
-        </ul>
-        <span
-          onClick={onClickViewMoreBrand}
-         
-          className={`text-base font-medium cursor-pointer  text-blue-500  dark:text-blue-400 ${
-            allBrands.length + 1 <= brandLimit ? "hidden" : "block"
-          }`}
-        >
-          View More
-        </span>
+        <div className="w-16 pb-2 mb-6 border-b  dark:border-gray-400" />
+        <div className="overflow-y-auto h-64">
+          <ul>
+          <li className="mb-4 px-1">
+              <label
+                htmlFor="00"
+                className="flex items-center cursor-pointer dark:text-gray-400 "
+              >
+                <input
+                  name="all"
+                  id="00"
+                  onChange={handelBrandSelecte}
+                  type="checkbox"
+                  className="w-4 h-4 mr-2"
+                />
+                <span className="text-lg">All</span>
+              </label>
+            </li>
+            {allBrands.length >= 1 &&
+              allBrands.map((brand) => {
+                return (
+                  <>
+                    {" "}
+                    <li key={brand._id} className="mb-4 px-1">
+                      <label
+                        htmlFor={brand._id}
+                        className="flex items-center dark:text-gray-300"
+                      >
+                        <input
+                          id={brand._id}
+                          onChange={handelBrandSelecte}
+                          checked={brandSelected.includes(brand._id) ? true : false}
+                          name={brand.name}
+                          type="checkbox"
+                          className="w-4 h-4 mr-2"
+                        />
+                        <span className="text-lg dark:text-gray-400">
+                          {brand.name}
+                        </span>
+                      </label>
+                    </li>
+                  </>
+                );
+              })}
+          </ul>
+          <span
+            onClick={onClickViewMoreBrand}
+            className={`text-base font-medium cursor-pointer  text-blue-500  dark:text-blue-400 ${
+              allBrands.length + 1 <= brandLimit ? "hidden" : "block"
+            }`}
+          >
+            View More
+          </span>
+        </div>
       </div>
       <div className="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-900 dark:shadow-md rounded-md">
         <h2 className="text-2xl font-bold dark:text-gray-400">Price</h2>
