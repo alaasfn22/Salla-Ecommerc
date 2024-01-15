@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
-  getCategoryPagination,
 } from "../../redux/slice/CategorySlice";
 
 const GetCategoryHooks = () => {
   const dispatch = useDispatch();
+  const limit=8
+  
   const { category, isLoading } = useSelector((state) => state.category);
   useEffect(() => {
-    dispatch(getCategories());
+    const data={limit}
+    dispatch(getCategories(data));
   }, []);
   const [allcategory,setAllCategory]=useState([])
   useEffect(() => {
@@ -29,7 +31,8 @@ const GetCategoryHooks = () => {
   }, [category]);
 
   const handelOnSelectPage = (page) => {
-    dispatch(getCategoryPagination(page));
+    const data = { limit: limit, page: page };
+    dispatch(getCategories(data));
   };
   return [allcategory, pageCount, handelOnSelectPage, isLoading];
 };

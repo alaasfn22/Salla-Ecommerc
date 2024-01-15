@@ -3,26 +3,16 @@ import { useGetData } from "../../Hook/useGetData";
 
 export const getCategories = createAsyncThunk(
   "category/getcategories",
-  async (_, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const res = await useGetData(`/api/v1/categories?limit=8`);
+      const res = await useGetData(`/api/v1/categories?limit=${data.limit}&page=${data.page}`);
       return res;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response);
     }
   }
 );
-export const getCategoryPagination = createAsyncThunk(
-  "category/getCategoryPagination",
-  async (page, thunkAPI) => {
-    try {
-      const res = await useGetData(`/api/v1/categories?limit=8&page=${page}`);
-      return res;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+
 export const getSpecificCategory = createAsyncThunk(
   "category/getSpecificCategory",
   async (id, thunkAPI) => {
@@ -60,19 +50,6 @@ const categorytSlice = createSlice({
       state.isLoading = false;
     },
     //////////////////////////////////////////////
-    [getCategoryPagination.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [getCategoryPagination.fulfilled]: (state, action) => {
-      state.category = action.payload;
-      state.isLoading = false;
-    },
-    [getCategoryPagination.rejected]: (state, action) => {
-      state.error = action?.payload;
-      // state.error = action?.error.message // when need to print result of message
-      state.isLoading = false;
-    },
     [getSpecificCategory.pending]: (state) => {
       state.isLoading = true;
       state.error = null;

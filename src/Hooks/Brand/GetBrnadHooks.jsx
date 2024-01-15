@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getBrnads, getBrnadsPagination } from "../../redux/slice/BrandSlice";
+import { getBrnads } from "../../redux/slice/BrandSlice";
 import { useEffect, useState } from "react";
 
 const GetBrnadHooks = () => {
   const { brands, isLoading } = useSelector((state) => state.brand);
   const dispatch = useDispatch();
+  const limit=8
   useEffect(() => {
-    dispatch(getBrnads());
+    const data={limit}
+    dispatch(getBrnads(data));
   }, []);
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
@@ -20,7 +22,8 @@ const GetBrnadHooks = () => {
   }, [brands]);
 
   const handelOnSelectPage = (page) => {
-    dispatch(getBrnadsPagination(page));
+    const data = { limit: limit, page: page };
+    dispatch(getBrnads(data));
   };
   return [brands, pageCount, handelOnSelectPage, isLoading];
 };
