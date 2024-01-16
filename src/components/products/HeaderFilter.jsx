@@ -11,7 +11,6 @@ const HeaderFilter = ({ selecteGrid, removeGrid ,handelShowFilter,getFilters}) =
 sessionStorage.setItem("sort",value)
 getFilters()
   }
-  console.log(sortValue)
   
   return (
     <div className=" mb-4 w-full">
@@ -65,6 +64,12 @@ getFilters()
             <select
               onChange={handelSort}
               value={sortValue}
+              defaultChecked={
+               sessionStorage.getItem("sort")
+              }
+              defaultValue={
+               sessionStorage.getItem("sort")
+              }
               name=""
               id=""
               className="block w-40 text-base bg-gray-100 cursor-pointer dark:text-gray-400 dark:bg-gray-900"

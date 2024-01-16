@@ -10,7 +10,7 @@ const GetProductPageHook = () => {
     getSortStorageFilter();
     await dispatch(
       getQueryAllPeoducts(
-        `sort=${sort}&limit=${limit}&${catQuery}&${brandQuery}`
+        `sort=${sort}&limit=${limit}&keyword=${word}&${catQuery}&${brandQuery}`
       )
     );
   };
@@ -45,13 +45,17 @@ const GetProductPageHook = () => {
     );
   };
   let catQuery = "",
-    brandQuery = "";
+    brandQuery = "",
+    word="";
   const getStorageFilterProducts = () => {
     if (sessionStorage.getItem("catSelected") !== null) {
       catQuery = sessionStorage.getItem("catSelected");
     }
     if (sessionStorage.getItem("brandSelected") !== null) {
       brandQuery = sessionStorage.getItem("brandSelected");
+    }
+    if (sessionStorage.getItem("search") !== null) {
+      word=sessionStorage.getItem("search")
     }
   };
 

@@ -15,7 +15,7 @@ const CartUpdateCountHooks = (product) => {
     const data = { id: product._id, count: e.target.value };
     setTimeout(() => {
       dispatch(updateCartCount(data));
-    }, 1000);
+    }, 2000);
   };
 
   return [handelSelecteValue, count];
