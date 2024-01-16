@@ -1,6 +1,17 @@
 /* eslint-disable react/prop-types */
 
-const HeaderFilter = ({ selecteGrid, removeGrid ,handelShowFilter}) => {
+import { useState } from "react";
+
+const HeaderFilter = ({ selecteGrid, removeGrid ,handelShowFilter,getFilters}) => {
+  const [sortValue,setSortValue]=useState("")
+
+  const handelSort=(e)=>{
+    setSortValue(e.target.value)
+    const value=e.target.value
+sessionStorage.setItem("sort",value)
+getFilters()
+  }
+  console.log(sortValue)
   
   return (
     <div className=" mb-4 w-full">
@@ -52,13 +63,18 @@ const HeaderFilter = ({ selecteGrid, removeGrid ,handelShowFilter}) => {
           <div className="flex  items-center justify-end ">
           <div className=" border-gray-300">
             <select
+              onChange={handelSort}
+              value={sortValue}
               name=""
               id=""
               className="block w-40 text-base bg-gray-100 cursor-pointer dark:text-gray-400 dark:bg-gray-900"
             >
-              <option value="">Sort by latest</option>
-              <option value="">Sort by Popularity</option>
-              <option value="">Sort by Price</option>
+              <option value="Out of order">Out of order</option>
+              <option value="Price From lowest to highest">Price From lowest to highest</option>
+              <option value="Price From highest to lowest">Price From highest to lowest</option>
+              <option value="Highest rated">Highest rated</option>
+              <option value="best seller">best seller</option>
+              <option value="quantity"> quantity</option>
             </select>
           </div>
          

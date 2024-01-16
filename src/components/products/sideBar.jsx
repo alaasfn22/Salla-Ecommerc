@@ -1,91 +1,20 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/slice/CategorySlice";
-import { getBrnads } from "../../redux/slice/BrandSlice";
+import ProductSideBarFiltersHooks from "../../Hooks/Products/ProductSideBarFiltersHooks";
+
 
 /* eslint-disable react/prop-types */
-const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
-  const [catlimit, setCatLimit] = useState(4);
-  const dispatch = useDispatch();
-  const { category } = useSelector((state) => state.category);
-  useEffect(() => {
-    const data = { limit: catlimit };
-    dispatch(getCategories(data));
-  }, [catlimit]);
-  const [allcategory, setAllCategory] = useState([]);
-  useEffect(() => {
-    if (category.data) {
-      setAllCategory(category.data);
-    }
-  }, [category.data]);
-  const onClickViewMoreCat = () => {
-    setCatLimit(catlimit + 4);
-  };
-
-  const { brands } = useSelector((state) => state.brand);
-  const [brandLimit, setBrandLimit] = useState(4);
-  useEffect(() => {
-    const data = { limit: brandLimit };
-    dispatch(getBrnads(data));
-  }, [brandLimit]);
-  const [allBrands, setAllBrands] = useState([]);
-  useEffect(() => {
-    if (brands.data) {
-      setAllBrands(brands.data);
-    }
-  }, [brands.data]);
-
-  const onClickViewMoreBrand = () => {
-    setBrandLimit(brandLimit + 4);
-  };
-  const [catSelected, setCatSelected] = useState([]);
-  const handelCatSelecte = (e) => {
-    const id = e.target.id;
-    if (e.target.checked === true) {
-      if (id === "0") {
-        setCatSelected([]);
-      }else if(id !=="0"){
-        setCatSelected([...catSelected, id]);
-      }
-    }else{
-      setCatSelected(catSelected.filter((item) => item !== id));
-    }
-  };
-  let queryCat="";
-   
-  useEffect(() => {
-    queryCat=catSelected.map((value)=>"category[in][]="+value  ).join("&")
-    window.sessionStorage.setItem("catSelected",queryCat)
-    setTimeout(() => {
-      getFilters()
-    }, 1000);
-
-  }, [catSelected]);
-
-  const [brandSelected, setBrandSelected] = useState([]);
-  const handelBrandSelecte = (e) => {
-    const id = e.target.id;
-    if (e.target.checked === true) {
-      if (id === "00") {
-        setBrandSelected([]);
-      }else if(id !=="00"){
-        setBrandSelected([...brandSelected, id]);
-      }
-    }else{
-      setBrandSelected(brandSelected.filter((item) => item !== id));
-    }
-  };
-  let queryBrand="";
-   
-  useEffect(() => {
-    queryBrand=brandSelected.map((value)=>"brand[in][]="+value  ).join("&")
-    window.sessionStorage.setItem("brandSelected",queryBrand)
-    setTimeout(()=>
-    {
-      getFilters()
-    },1000)
-
-  }, [brandSelected]);
+const SideBar = ({ showFilter, handelShowFilter, getFilters }) => {
+  const [
+    catSelected,
+    handelCatSelecte,
+    brandSelected,
+    handelBrandSelecte,
+    catlimit,
+    onClickViewMoreCat,
+    allcategory,
+    onClickViewMoreBrand,
+    allBrands,
+    brandLimit,
+  ] = ProductSideBarFiltersHooks(getFilters);
 
   return (
     <div
@@ -169,7 +98,7 @@ const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
         <div className="w-16 pb-2 mb-6 border-b  dark:border-gray-400" />
         <div className="overflow-y-auto h-64">
           <ul>
-          <li className="mb-4 px-1">
+            <li className="mb-4 px-1">
               <label
                 htmlFor="00"
                 className="flex items-center cursor-pointer dark:text-gray-400 "
@@ -197,7 +126,9 @@ const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
                         <input
                           id={brand._id}
                           onChange={handelBrandSelecte}
-                          checked={brandSelected.includes(brand._id) ? true : false}
+                          checked={
+                            brandSelected.includes(brand._id) ? true : false
+                          }
                           name={brand.name}
                           type="checkbox"
                           className="w-4 h-4 mr-2"
@@ -230,6 +161,7 @@ const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
             className="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer"
             max={100}
             defaultValue={50}
+            onChange={(e)=>console.log(e.target.value)}
           />
           <div className="flex justify-between ">
             <span className="inline-block text-lg font-bold text-blue-400 ">
@@ -239,6 +171,8 @@ const SideBar = ({ showFilter, handelShowFilter ,getFilters}) => {
               $500
             </span>
           </div>
+   
+          
         </div>
       </div>
     </div>
