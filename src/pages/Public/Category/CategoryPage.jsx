@@ -3,6 +3,7 @@ import CatCard from "../../../components/category/catCard";
 import LoadingSpinner from "../../../helper/Spinner";
 import GetCategoryHooks from "../../../Hooks/Category/GetCategoryHooks";
 import { Pagination } from "flowbite-react";
+import Landing from "../../../utils/Landing";
 
 const CategoryPage = () => {
   const [allcategory, pageCount, handelOnSelectPage, isLoading] =
@@ -16,8 +17,10 @@ const CategoryPage = () => {
     return <LoadingSpinner />;
   }
   return (
+    <>
+     <Landing curentPAge="Categories Page"/>
     <div className="container py-8 ">
-      <div className="grid grid-cols-16 py-4 l gap-4 dark:bg-gray-800  ">
+      <div className="grid grid-cols-16 py-4 l gap-4 dark:bg-gray-800 ">
         {allcategory ? (
           allcategory.map((category) => {
             return (
@@ -45,6 +48,7 @@ const CategoryPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

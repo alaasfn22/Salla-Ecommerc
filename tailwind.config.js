@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    // ...
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   darkMode: 'class',
@@ -30,10 +29,15 @@ export default {
         footer: "200px minmax(900px, 1fr) 100px",
       },
       colors: {
-        "main-Color": "#f0f9ff",
+        "main-Color": "#fff",
+        "main-Color-2": "#b5caa3",        
         "gray-dark": "#273444",
         "gray-light": "#d3dce6",
-        "btn-color":"#73C0FC"
+        "btn-color2":"#5e7b64",
+        // "btn-color2":"#9BB783",
+        "gray-color":"#0000000d",
+        // "btn-color":"#2a2185",
+
       },
     },
   },

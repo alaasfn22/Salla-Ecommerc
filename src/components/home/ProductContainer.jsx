@@ -6,8 +6,8 @@ import ProductCard from "../products/ProductCard";
 const ProductContainer = ({ isLoading, allProducts }) => {
   return (
     <div>
+
      <CustomeButton
-        name="Products"
         pathname="/products"
         title="All Products"
       />
@@ -26,6 +26,7 @@ const ProductContainer = ({ isLoading, allProducts }) => {
           </div>
         )}
       </div>
+
     </div>
   );
 };

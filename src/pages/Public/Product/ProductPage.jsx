@@ -8,13 +8,17 @@ import HeaderFilter from "../../../components/products/HeaderFilter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getQueryAllPeoducts } from "../../../redux/slice/ProductSlice";
+import Landing from "../../../utils/Landing";
+import Pagination from "../../../utils/Pagination/Pagination";
 
 const ProductPage = () => {
 const [allProducts, pageCount, handelOnSelectPage, isLoading, error,
   customeGrid,selecteGrid,removeGrid,showFilter,handelShowFilter,getFilters,setShowFilter]=GetProductPageHook()
 
   return (
-    <section className="px-2 lg:container      dark:bg-gray-800 ">
+   <div>
+    <Landing curentPAge="Shoping Page"/>
+     <section className="px-2 lg:container      dark:bg-gray-800 ">
       <div className=" py-4 lg:py-6 ">
         <div className="flex  mb-24 ">
           <SideBar getFilters={getFilters} handelShowFilter={handelShowFilter} showFilter={showFilter} />
@@ -35,7 +39,7 @@ const [allProducts, pageCount, handelOnSelectPage, isLoading, error,
               </div>
             }
             <div className="flex justify-center md:justify-end mt-6">
-              <CustomePagination
+              <Pagination
                 handelOnSelectPage={handelOnSelectPage}
                 pageCount={pageCount}
               />
@@ -48,6 +52,7 @@ const [allProducts, pageCount, handelOnSelectPage, isLoading, error,
         </div>
       </div>
     </section>
+   </div>
   );
 };
 

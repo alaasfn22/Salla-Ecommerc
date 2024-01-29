@@ -20,6 +20,8 @@ const BrandCard = ({ name, image, id }) => {
         </div>
       </div>
     </Link>
+      
+       
   );
 };
 

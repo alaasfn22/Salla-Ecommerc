@@ -3,9 +3,9 @@
 
 import LoadingSpinner from "../../helper/Spinner";
 import CartAddHooks from "../../Hooks/Cart/CartAddHooks";
-import { customeContainer } from "../../utils/Toast";
+import {customeContainer} from "../../utils/Toast";
 
-const ProductDetalisText = ({ product, brand, category }) => {
+const ProductDetalisText = ({product, brand, category}) => {
   const [addToCart, handelSelectColor, colorCheck] = CartAddHooks(product);
   return (
     <div className=" flex flex-col gap-8 md:px-8  dark:text-gray-50">
@@ -46,10 +46,10 @@ const ProductDetalisText = ({ product, brand, category }) => {
                       <span
                         key={color}
                         onClick={() => handelSelectColor(index, color)}
-                        style={{ backgroundColor: color }}
+                        style={{backgroundColor: color}}
                         className={`${
                           colorCheck === index
-                            ? "border-2 border-blue-400"
+                            ? "border-2 border-btn-color2"
                             : "border-2 border-gray-300"
                         }
                     flex w-5 h-5 cursor-pointer rounded-full dark:bg-gray-700 `}
@@ -66,7 +66,7 @@ const ProductDetalisText = ({ product, brand, category }) => {
             <button
               onClick={addToCart}
               type="button"
-              className="text-white  bg-btn-color hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white  bg-btn-color2 hover:bg-main-Color-2 focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 "
             >
               Add To Cart
             </button>

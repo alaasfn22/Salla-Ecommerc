@@ -3,6 +3,7 @@ import LoadingSpinner from "../../../helper/Spinner";
 import BrandCard from "../../../components/brand/BrandCard";
 import GetBrnadHooks from "../../../Hooks/Brand/GetBrnadHooks";
 import { Pagination } from "flowbite-react";
+import Landing from "../../../utils/Landing";
 
 const BrandPage = () => {
   const [brands, pageCount, handelOnSelectPage, isLoading] = GetBrnadHooks();
@@ -15,6 +16,8 @@ const BrandPage = () => {
     return <LoadingSpinner />;
   }
   return (
+    <>
+     <Landing curentPAge="Brands Page"/>
     <div className="container py-8 ">
       <div className="grid grid-cols-16 gap-4 py-4 dark:bg-gray-800 ">
         {brands.data ? (
@@ -36,7 +39,11 @@ const BrandPage = () => {
       <div className="flex justify-center items-center py-8">
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
+            className="pagination"
             currentPage={currentPage}
+            siblingCount={1}
+            boundaryCount={1}            
+            total={brands.total}
             totalPages={pageCount}
             onPageChange={onPageChange}
             showIcons
@@ -44,6 +51,7 @@ const BrandPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
