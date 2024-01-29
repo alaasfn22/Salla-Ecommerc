@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQueryAllPeoducts } from "../../redux/slice/ProductSlice";
 
 const GetProductPageHook = () => {
-  const limit = 6;
+  const limit = 8;
   const dispatch = useDispatch();
   const getFilters = async () => {
     getStorageFilterProducts();
@@ -37,6 +37,8 @@ const GetProductPageHook = () => {
   }, [products?.data]);
 
   const handelOnSelectPage = (page) => {
+    console.log(page)
+
     getStorageFilterProducts();
     dispatch(
       getQueryAllPeoducts(

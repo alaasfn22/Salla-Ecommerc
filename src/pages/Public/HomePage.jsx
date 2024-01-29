@@ -23,13 +23,19 @@ const HomePage = () => {
   ] = HomeHooks();
 
   return (
-    <div className="container ">
+    <div >
       <Suspense fallback={<LoadingSpinner />}>
         <Gallery />
       </Suspense>
+      <div className="container">
       <div className="py-4">
         <Suspense fallback={<LoadingSpinner />}>
           <Categorycontainer catLoading={catLoading} category={allCategory} />
+        </Suspense>
+      </div>
+      <div className="py-4">
+        <Suspense fallback={<LoadingSpinner />}>
+          <BrandContainer brandLoading={brandLoading} brands={brands} />
         </Suspense>
       </div>
 
@@ -43,10 +49,7 @@ const HomePage = () => {
       </div>
       
 
-      <div className="py-4">
-        <Suspense fallback={<LoadingSpinner />}>
-          <BrandContainer brandLoading={brandLoading} brands={brands} />
-        </Suspense>
+     
       </div>
     </div>
   );

@@ -26,13 +26,13 @@ const CartCheckout = ({ totalPrice }) => {
         />
         <button
           onClick={addCupone}
-          className="flex-1  p-4 w-full font-bold text-center text-gray-100 bg-sky-500 rounded-md hover:bg-sky-600 md:flex-none"
+          className="flex-1  p-4 w-full font-bold text-center text-gray-100 bg-btn-color2 rounded-md hover:bg-main-Color-2 md:flex-none"
         >
           Apply
         </button>
       </div>
       <div className="w-full  ">
-        <div className="p-6 border rounded-lg border-sky-100 dark:bg-gray-900 dark:border-gray-900 bg-sky-50 md:p-8">
+        <div className="p-6 border rounded-lg border-sky-100 dark:bg-gray-900 dark:border-gray-900 md:p-8">
           <h2 className="mb-8 text-3xl font-bold text-gray-700 dark:text-gray-400">
             Order Summary
           </h2>
@@ -93,7 +93,7 @@ const CartCheckout = ({ totalPrice }) => {
             </a>
           </div>
           <div className="flex items-center justify-between ">
-            <button className="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-sky-500 rounded-md hover:bg-sky-600">
+            <button className="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-btn-color2 rounded-md hover:bg-main-Color-2">
               Checkout
             </button>
           </div>

@@ -1,15 +1,18 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { loader as PostaLoader } from "./pages/Admin/DashBoard";
+import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import {loader as PostaLoader} from "./pages/Admin/DashBoard";
 import DashBoard from "./pages/Admin/DashBoard";
 import DashBoardLayout from "./pages/Admin/DashBoardLayout";
 import UsersPage from "./pages/Admin/UsersPage";
 import LoginPage from "./pages/Auth/LoginPage";
 import Products from "./pages/Admin/Products";
-import { Suspense, lazy, useEffect, useState } from "react";
-import PageLoading from "./helper/PageLoading";
+import {Suspense, lazy, useEffect, useState} from "react";
 import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import RootLayout from "./pages/Public/RootLayout";
+import UserLayOut from "./pages/User/UserLayOut";
+import UserInfoPage from "./pages/User/UserInfoPage";
+import ReqauirBack from "./pages/Auth/ReqauirBack";
+import PageLoading from "./helper/PageLoading"
 const HomePage = lazy(() => import("./pages/Public/HomePage"));
 const ProductPage = lazy(() => import("./pages/Public/Product/ProductPage"));
 const CategoryPage = lazy(() => import("./pages/Public/Category/CategoryPage"));
@@ -36,11 +39,26 @@ function App() {
   if (loading) {
     return <PageLoading />;
   }
-  console.log(window.navigator.onLine)
-  if(window.navigator.onLine===false){
-    return <NotFoundPage />
+  console.log(window.navigator.onLine);
+  if (window.navigator.onLine === false) {
+    return <NotFoundPage />;
   }
   const router = createBrowserRouter([
+    {
+      path:"",
+      element: <ReqauirBack />,
+      children: [
+        {
+          path: "/login",
+          element: <LoginPage />,
+        },
+        {
+          path: "/register",
+          element: <RegisterPage />,
+        },
+      ],
+    },
+
     {
       path: "/dashboard",
       element: <DashBoardLayout />,
@@ -137,15 +155,18 @@ function App() {
       ],
     },
     {
-      path: "/login",
-      element: <LoginPage />,
+      path: "/profile",
+      element: <UserLayOut />,
+      children: [
+        {
+          index: true,
+          element: <UserInfoPage />,
+        },
+      ],
     },
+ 
     {
-      path: "/register",
-      element: <RegisterPage />,
-    },
-    {
-      path: "*",
+      path: "/*",
       element: (
         <Suspense fallback={<LoadingSpinner />}>
           <NotFoundPage />

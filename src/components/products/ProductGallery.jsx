@@ -7,6 +7,7 @@ import { imageAPi } from "../../Api/imageAPI";
 const ProductGallery = ({ product }) => {
   const [images, setImages] = useState([]);
   const [imageCover, setImageCover] = useState("");
+  
   useEffect(() => {
     if (product.images) {
       setImages(product.images);
@@ -26,8 +27,8 @@ const ProductGallery = ({ product }) => {
           <LazyLoadImage
           className=" h-52 object-contain "
           src={imageAPi + imageCover.slice(9)}
-          alt={imageCover}
-          title={imageCover}
+          alt={imageCover.slice(9)}
+          title={imageCover.slice(9)}
           loading="lazy"
           
           style={{ cursor: "pointer" }}
@@ -48,7 +49,7 @@ const ProductGallery = ({ product }) => {
                       className={
                         `${
                           image === imageCover?
-                          "border-2 bg-white border-blue-300 h-auto max-h-[100px] overflow-hidden p-2  rounded-lg  dark:bg-gray-800 dark:border-gray-700":
+                          "border-2 bg-white border-main-Color-2 h-auto max-h-[100px] overflow-hidden p-2  rounded-lg  dark:bg-gray-800 dark:border-gray-700":
                           "border-2 bg-white h-auto max-h-[100px] overflow-hidden p-2  dark:bg-gray-800 dark:border-gray-700 rounded-lg border-gray-300"
                         }`
                       }
