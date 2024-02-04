@@ -9,10 +9,10 @@ import {Suspense, lazy, useEffect, useState} from "react";
 import LoadingSpinner from "./helper/Spinner";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import RootLayout from "./pages/Public/RootLayout";
-import UserLayOut from "./pages/User/UserLayOut";
+import UserLayOut from "./pages/User/UserLayout";
 import UserInfoPage from "./pages/User/UserInfoPage";
 import ReqauirBack from "./pages/Auth/ReqauirBack";
-import PageLoading from "./helper/PageLoading"
+import PageLoading from "./helper/PageLoading";
 const HomePage = lazy(() => import("./pages/Public/HomePage"));
 const ProductPage = lazy(() => import("./pages/Public/Product/ProductPage"));
 const CategoryPage = lazy(() => import("./pages/Public/Category/CategoryPage"));
@@ -45,7 +45,7 @@ function App() {
   }
   const router = createBrowserRouter([
     {
-      path:"",
+      path: "",
       element: <ReqauirBack />,
       children: [
         {
@@ -164,7 +164,7 @@ function App() {
         },
       ],
     },
- 
+
     {
       path: "/*",
       element: (
