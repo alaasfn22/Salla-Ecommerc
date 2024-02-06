@@ -8,8 +8,6 @@ import {useState} from "react";
 import CartLoggedHooks from "../Hooks/Cart/cartLoggedHooks";
 import GetProductPageHook from "../Hooks/Products/GetProductPageHook";
 import {cartIcon, loginIcon, wishlistIcon} from "./data/icons";
-import imgdark from "../assets/Shopping Bag Online Market Logo (1).png";
-import imglight from "../assets/Shopping Bag Online Market Logo.png";
 
 function NaveBar() {
   // eslint-disable-next-line no-unused-vars
