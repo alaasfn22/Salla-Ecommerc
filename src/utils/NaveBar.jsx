@@ -8,6 +8,8 @@ import {useState} from "react";
 import CartLoggedHooks from "../Hooks/Cart/cartLoggedHooks";
 import GetProductPageHook from "../Hooks/Products/GetProductPageHook";
 import {cartIcon, loginIcon, wishlistIcon} from "./data/icons";
+import imgdark from "../assets/Shopping Bag Online Market Logo (1).png";
+import imglight from "../assets/Shopping Bag Online Market Logo.png";
 
 function NaveBar() {
   // eslint-disable-next-line no-unused-vars
@@ -66,15 +68,14 @@ function NaveBar() {
 
   return (
     <>
-      <header className="md:sticky  top-0 z-50 bg-white bg-opacity-75  shadow-sm">
+      <header className="md:sticky  top-0 z-50 bg-white dark:bg-gray-800 bg-opacity-75  shadow-sm">
         <div className="container px-4  py-4 flex justify-between items-center">
           {/* logo */}
           <div className="">
-            <img
-              className="h-8 md:h-10"
-              src="https://i.ibb.co/98pHdFq/2021-10-27-15h51-15.png"
-              alt=""
-            />
+            {/* <img className="h-8 md:h-10" src={imglight} alt="" /> */}
+            <h3 className="text-2xl font-bold text-btn-color2 font-serif">
+              Online Market
+            </h3>
           </div>
           {/* search */}
           {/* <div className="w-full xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden lg:flex items-center">
@@ -126,7 +127,7 @@ function NaveBar() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="w-8 h-8 rounded-full"
-                          src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt="user photo"
                         />
                       </button>
@@ -134,7 +135,7 @@ function NaveBar() {
                   >
                     <Dropdown.Item className="border-b">
                       Welcome {userName}
-                      </Dropdown.Item>
+                    </Dropdown.Item>
                     {auth?.role === "admin" && (
                       <Dropdown.Item>
                         <Link to="/dashboard">Dashboard</Link>
@@ -163,7 +164,7 @@ function NaveBar() {
               )}
               <li className="ml-2 lg:ml-4 relative inline-block">
                 <Link className="" to="#">
-                  <div className="absolute -top-1 right-0 z-10 bg-btn-color2 text-white dark:bg-gray-500 text-xs font-bold px-1 py-0.5 rounded-sm">
+                  <div className="absolute -top-1 right-0 z-10 bg-btn-color2 text-white  text-xs font-bold px-1 py-0.5 rounded-sm">
                     3
                   </div>
                   {wishlistIcon}
@@ -210,7 +211,7 @@ function NaveBar() {
                   <>
                     <li
                       key={index}
-                      className="px-2 lg:px-3 flex items-center   hover:text-btn-color2 font-serif"
+                      className="px-2 lg:px-3 flex items-center dark:text-white dark:hover:text-btn-color2   hover:text-btn-color2 font-serif"
                     >
                       <NavLink to={link.path} className="truncate max-w-24">
                         <span>{link.name}</span>
@@ -248,10 +249,11 @@ function NaveBar() {
         </div>
       </header>
       {/* mobile */}
+
       <div
-        className={`h-screen w-full  flex  ${
+        className={`h-full w-full  flex   ${
           openNav ? "left-0" : "-left-[850px]"
-        } md:hidden transition-all duration-200 ease-linear  absolute top-0 bottom-0  z-[999]`}
+        } md:hidden transition-all duration-200 ease-linear  fixed top-0 bottom-0  z-50`}
       >
         <nav className={`w-1/2 h-full bg-main-Color-2 bg-opacity-95`}>
           {/* close */}

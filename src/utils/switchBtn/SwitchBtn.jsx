@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
+import {animateScroll as scroll} from "react-scroll";
 import "./switchBtn.css";
 const SwitchBtn = () => {
   const [theme, setTheme] = useState(null);
@@ -21,30 +22,99 @@ const SwitchBtn = () => {
     document.documentElement.classList.toggle("dark");
     localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
   };
+  const [up, setUp] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        setUp(true);
+      } else {
+        setUp(false);
+      }
+    });
+  }, []);
+
+  const handleScrollUp = () => {
+    scroll.scrollToTop({
+      duration: 500, // Adjust the duration as needed
+      smooth: "smooth", // You can choose different easing functions
+    });
+  };
 
   return (
-    <label className="switch">
-     
-
-      <span className="sun">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g fill="#ffd43b">
-            <circle r={5} cy={12} cx={12} />
-            <path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z" />
-          </g>
+    <div className="fixed bottom-10 right-10   flex flex-col items-center bg-btn-color2/25 rounded-full z-50">
+      <button
+        onClick={handleScrollUp}
+        className={` ${
+          up
+            ? "w-8 flex justify-center items-center transition-all duration-500 z-50 h-8"
+            : "hidden"
+        }`}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          data-lucide="chevron-up"
+          className="lucide lucide-chevron-up h-5 w-5 text-white mt-1"
+        >
+          <path d="m18 15-6-6-6 6" />
         </svg>
-      </span>
-      <span className="moon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-          <path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
-        </svg>
-      </span>
-
-      <input onChange={toggleTheme} type="checkbox" className="input" />
-      <span className={
-        theme === "dark" ? "slider left-0" : "slider right-0"
-      } />
-    </label>
+      </button>
+      <button
+        onClick={toggleTheme}
+        className="rounded-full h-10 w-10 bg-btn-color2 text-white flex justify-center items-center z-20"
+      >
+        {theme === "dark" ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            data-lucide="sun"
+            className="lucide lucide-sun h-5 w-5"
+            id="light-theme"
+          >
+            <circle cx={12} cy={12} r={4} />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            data-lucide="moon"
+            className="lucide lucide-moon h-5 w-5"
+            id="dark-theme"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        )}
+      </button>
+    </div>
   );
 };
 
